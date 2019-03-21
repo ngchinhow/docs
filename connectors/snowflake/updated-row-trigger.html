@@ -10468,8 +10468,8 @@
                                 <h1 id="snowflake---newupdated-row-triggers">Snowflake - New/updated row triggers</h1>
 <h2 id="newupdated-row">New/updated row</h2>
 <p>This trigger picks up rows that are inserted/updated in the selected table or view. Each row is processed as a separate job. It checks for new/updated rows once every poll interval. The poll interval can be 10 mins or 5 mins, depending on your plan. Check the <a href="https://www.workato.com/pricing?audience=general" target="_blank">Pricing and Plans page</a> to find out more.</p>
-<!-- ![New/updated row trigger](/assets/images/snowflake/new-updated-row-trigger.png)
-*New/updated row trigger* -->
+<p><img src="../../assets/images/snowflake/new-updated-row-trigger.png" alt="New/updated row trigger">
+<em>New/updated row trigger</em></p>
 <table class="unchanged rich-diff-level-one">
   <thead>
     <tr>
@@ -10507,8 +10507,8 @@
 
 <h2 id="newupdated-batch-of-rows">New/updated batch of rows</h2>
 <p>This trigger picks up rows that are inserted/updated in the selected table or view. These rows are processed as a batch of rows for each job. This batch size can be configured in the trigger input. It checks for new/updated rows once every poll interval. The poll interval can be 10 mins or 5 mins, depending on your plan. Check the <a href="https://www.workato.com/pricing?audience=general" target="_blank">Pricing and Plans page</a> to find out more.</p>
-<!-- ![New/updated batch of rows trigger](/assets/images/snowflake/new-updated-batch-of-rows-trigger.png)
-*New/updated batch of rows trigger* -->
+<p><img src="../../assets/images/snowflake/new-updated-batch-of-rows-trigger.png" alt="New/updated batch of rows trigger">
+<em>New/updated batch of rows trigger</em></p>
 <table class="unchanged rich-diff-level-one">
   <thead>
     <tr>
@@ -10554,30 +10554,12 @@
 <h3 id="table">Table</h3>
 <p>Select the table/view to process rows from. This can be done either by selecting a table from the pick list, or toggling the input field to text mode and typing the full table name.</p>
 <h3 id="unique-key">Unique key</h3>
-<p>Values from this selected column is used to deduplicate rows in the selected table.</p>
+<p>Values from this selected column are used to deduplicate rows in the selected table.</p>
 <p>As such, the values in the selected column should not be repeated in your table. Typically, this column is the primary key of the table (e.g. <code>ID</code>). It should be incremental and sortable. This column can also be indexed for better performance.</p>
-<p>Only columns that have <strong>PRIMARY KEY</strong> or <strong>UNIQUE</strong> constraints can be used. Run this SQL query to find out which columns fulfill this requirement.</p>
-<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span> c.column_name
-<span class="hljs-keyword">FROM</span> information_schema.key_column_usage <span class="hljs-keyword">AS</span> c
-<span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> information_schema.table_constraints <span class="hljs-keyword">AS</span> t
-<span class="hljs-keyword">ON</span> t.constraint_name = c.constraint_name
-<span class="hljs-keyword">WHERE</span>
-  t.table_schema = <span class="hljs-string">&apos;schema_name&apos;</span> <span class="hljs-keyword">AND</span>
-  t.table_name = <span class="hljs-string">&apos;table_name&apos;</span> <span class="hljs-keyword">AND</span>
-  t.constraint_type <span class="hljs-keyword">in</span> (<span class="hljs-string">&apos;PRIMARY KEY&apos;</span>, <span class="hljs-string">&apos;UNIQUE&apos;</span>)
-<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> c.ordinal_position;
-</code></pre>
 <h3 id="sort-column">Sort column</h3>
 <p>Sort column is a column that is updated whenever a row in the table is updated. Typically, this is a timestamp column.</p>
 <p>When a row is updated, the Unique key value remains the same. However, it should have its timestamp updated to reflect the last updated time. Following this logic, Workato keeps track of values in this column together with values in the selected <a href="#unique-key"><strong>Unique key</strong></a> column. When a change in the <strong>Sort column</strong> value is observed, an updated row event will be recorded and processed by the trigger.</p>
-<p>Only <strong>timestamp</strong> and <strong>timestamp with time zone</strong> column types can be used. Run this SQL query to find out which columns fulfill this requirement.</p>
-<pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span> column_name
-<span class="hljs-keyword">FROM</span> information_schema.<span class="hljs-keyword">columns</span>
-<span class="hljs-keyword">WHERE</span>
-  table_schema = <span class="hljs-string">&apos;schema_name&apos;</span> <span class="hljs-keyword">AND</span>
-  table_name = <span class="hljs-string">&apos;table_name&apos;</span> <span class="hljs-keyword">AND</span>
-  data_type <span class="hljs-keyword">like</span> <span class="hljs-string">&apos;timestamp%&apos;</span>
-</code></pre>
+<p>Only <strong>timestamp</strong> (<code>TIMESTAMP</code>,<code>TIMESTAMP_LTZ</code>, <code>TIMESTAMP_NTZ</code>, <code>TIMESTAMP_TZ</code>) columns can be used.</p>
 <h3 id="batch-size">Batch size</h3>
 <p>Batch size of rows to return in each job. This can be any number between <strong>1</strong> and the maximum batch size. Maximum batch size is <strong>100</strong> and default is <strong>100</strong>.</p>
 <p>In any given poll, if there are less rows than the configured batch size, this trigger will deliver all rows as a smaller batch.</p>
@@ -10669,7 +10651,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"New/updated row trigger","date":"2019-01-10T06:10:00.000Z","level":"1.19.41.9","depth":3,"next":{"title":"Splunk","level":"1.19.42","depth":2,"path":"connectors/splunk.md","ref":"connectors/splunk.md","articles":[]},"previous":{"title":"New row trigger","level":"1.19.41.8","depth":3,"path":"connectors/snowflake/new-row-trigger.md","ref":"connectors/snowflake/new-row-trigger.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"connectors/snowflake/updated-row-trigger.md","mtime":"2019-03-19T05:50:19.452Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-03-19T05:51:22.996Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"New/updated row trigger","date":"2019-01-10T06:10:00.000Z","level":"1.19.41.9","depth":3,"next":{"title":"Splunk","level":"1.19.42","depth":2,"path":"connectors/splunk.md","ref":"connectors/splunk.md","articles":[]},"previous":{"title":"New row trigger","level":"1.19.41.8","depth":3,"path":"connectors/snowflake/new-row-trigger.md","ref":"connectors/snowflake/new-row-trigger.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"connectors/snowflake/updated-row-trigger.md","mtime":"2019-03-21T03:31:42.914Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-03-21T03:33:50.939Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

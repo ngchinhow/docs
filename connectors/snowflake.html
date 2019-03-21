@@ -10466,7 +10466,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="snowflake">Snowflake</h1>
-<p>Snowflake is a relational ANSI SQL data warehouse in the cloud. Due to its unique architecture designed for the cloud, Snowflake offers a data warehouse that is faster, easier to use, and far more flexible than traditional data warehouse</p>
+<p>Snowflake is a relational ANSI SQL data warehouse in the cloud. Due to its unique architecture designed for the cloud, Snowflake offers a data warehouse that is faster, easier to use, and far more flexible than traditional data warehouses</p>
 <h2 id="how-to-connect-to-snowflake-on-workato">How to connect to Snowflake on Workato</h2>
 <p>The Snowflake connector uses username and password to authenticate with Snowflake. If your snowflake instance has network policies that restrict access based on IP address, you will need to whitelist <a href="../security.html#ip_whitelists">Workato IP addresses</a> to successfully create a connection.</p>
 <p><img src="../assets/images/snowflake/connection.png" alt="Snowflake connection">
@@ -10538,6 +10538,10 @@
       <td>Schema</td>
       <td><b>Optional</b>. Name of the schema within the Snowflake database you wish to connect to. Defaults to <b>public</b>.</td>
     </tr>
+    <tr>
+      <td><a href="#database-timezone">Database timezone</a></td>
+      <td><b>Optional</b>. Apply this to all timestamps without timezone.</td>
+    </tr>
   </tbody>
 </table>
 
@@ -10556,32 +10560,33 @@
 <p>Warehouses can be configured to auto-suspend after a period of inactivity. This specified period of time depends on your business process.</p>
 <p>A running warehouse maintains a cache of table data. This reduces the time taken for subsequent queries if the cached data can be used instead of reading from the table again. A larger warehouse has a larger cache capacity. This cache is dropped when the warehouse is suspended. As a result, performance for initial queries on a warehouse that was auto-resumed will be slower.</p>
 <p>Use cases with high frequency and low down time in between queries will benefit from a longer period of time before auto-suspend.</p>
+<h3 id="database-timezone">Database timezone</h3>
+<p>Snowflake supports TIMESTAMP_NTZ data type (&quot;wallclock&quot; time information without timezone). This creates a challenge trying to integrate with external systems. When sending or reading data from these columns, it needs to be converted to a default timezone for APIs of other applications to process accurately.</p>
+<p>Select a timezone that your database operates in. This timezone will only be applied to these columns. Other timestamp columns with explicit timezone values will be unaffected.</p>
+<blockquote>
+<p><strong>If left blank, your Workato account timezone will be used instead.</strong></p>
+</blockquote>
+<p>When <strong>writing</strong> timestamp values to such columns in a table, it will first be converted to this specified timezone. Then, only the &quot;wallclock&quot; value will be stored.</p>
+<p>When <strong>reading</strong> timestamp without timezone values in a table, the timestamp will be assigned the selected timezone and processed as a timestamp with timezone value.</p>
 <h3 id="table-and-view">Table and view</h3>
 <p>The Snowflake connector works with all tables and views available to the username used to establish the connection. These are available in pick lists in each trigger/action, or you can provide the exact name.</p>
 <p><img src="../assets/images/snowflake/table_pick_list.png" alt="Table selection from pick list">
 <em>Select a table/view from pick list</em></p>
 <p><img src="../assets/images/snowflake/table_name_text.png" alt="Exact table name provided">
 <em>Provide exact table/view name in a text field</em></p>
-<!-- ### Single row vs batch of rows
-Snowflake connector can read or write to your database either as a single row or in batches. When using batch triggers/actions, you have to provide the batch size you wish to work with. The batch size can be any number between 1 and 100, with 100 being the maximum batch size.
-
-![Batch trigger inputs](/assets/images/mssql/batch_trigger_input.png)
-*Batch trigger inputs*
-
-Besides the difference in input fields, there is also a difference between the outputs of these 2 types of operations. A trigger that processes rows one at a time will have an output datatree that allows you to map data from that single row.
-
-![Single row output](/assets/images/snowflake/single_row_trigger_output.png)
-*Single row output*
-
-However, a trigger that processes rows in batches will output them as an array of rows. The <kbd>Rows</kbd> datapill indicates that the output is a list containing data for each row in that batch.
-
-![Batch trigger output](/assets/images/snowflake/batch_trigger_output.png)
-*Batch trigger output*
-
-As a result, the output of batch triggers/actions needs to be handled differently. The output of the trigger can be used in actions with batch operations (like Salesforce **Create objects in bulk action**) that requires mapping the <kbd>Rows</kbd> datapill into the source list. Learn how to work with lists in [List management](/features/list-management.md#using-datapills-in-an-action-with-a-list-input-action-handles-list-processing-implicitly).
-
-![Using batch trigger output](/assets/images/snowflake/using_batch_output.png)
-*Using batch trigger output* -->
+<h3 id="single-row-vs-batch-of-rows">Single row vs batch of rows</h3>
+<p>Snowflake connector can read or write to your database either as a single row or in batches. When using batch triggers/actions, you have to provide the batch size you wish to work with. The batch size can be any number between 1 and 100, with 100 being the maximum batch size.</p>
+<p><img src="../assets/images/snowflake/new-batch-of-rows-trigger.png" alt="Batch trigger inputs">
+<em>Batch trigger inputs</em></p>
+<p>Besides the difference in input fields, there is also a difference between the outputs of these 2 types of operations. A trigger that processes rows one at a time will have an output datatree that allows you to map data from that single row.</p>
+<p><img src="../assets/images/snowflake/single_row_trigger_output.png" alt="Single row output">
+<em>Single row output</em></p>
+<p>However, a trigger that processes rows in batches will output them as an array of rows. The <kbd>Rows</kbd> datapill indicates that the output is a list containing data for each row in that batch.</p>
+<p><img src="../assets/images/snowflake/batch_trigger_output.png" alt="Batch trigger output">
+<em>Batch trigger output</em></p>
+<p>As a result, the output of batch triggers/actions needs to be handled differently. The output of the trigger can be used in actions with batch operations (like Salesforce <strong>Create objects in bulk action</strong>) that requires mapping the <kbd>Rows</kbd> datapill into the source list. Learn how to work with lists in <a href="../features/list-management.html#using-datapills-in-an-action-with-a-list-input-action-handles-list-processing-implicitly">List management</a>.</p>
+<p><img src="../assets/images/snowflake/using_batch_output.png" alt="Using batch trigger output">
+<em>Using batch trigger output</em></p>
 <h3 id="where-condition">WHERE condition</h3>
 <p>This input field is used to filter and identify rows to perform an action on. It is used in multiple triggers and actions in the following ways:</p>
 <ul>
@@ -10692,7 +10697,7 @@ As a result, the output of batch triggers/actions needs to be handled differentl
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Snowflake","date":"2019-01-10T06:10:00.000Z","level":"1.19.41","depth":2,"next":{"title":"Connection setup","level":"1.19.41.1","depth":3,"anchor":"#how-to-connect-to-snowflake-on-workato","path":"connectors/snowflake.md","ref":"connectors/snowflake.md#how-to-connect-to-snowflake-on-workato","articles":[]},"previous":{"title":"Custom OAuth profiles","level":"1.19.40.6","depth":3,"path":"connectors/slack/custom-oauth.md","ref":"connectors/slack/custom-oauth.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"connectors/snowflake.md","mtime":"2019-03-19T05:50:19.448Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-03-19T05:51:22.996Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Snowflake","date":"2019-01-10T06:10:00.000Z","level":"1.19.41","depth":2,"next":{"title":"Connection setup","level":"1.19.41.1","depth":3,"anchor":"#how-to-connect-to-snowflake-on-workato","path":"connectors/snowflake.md","ref":"connectors/snowflake.md#how-to-connect-to-snowflake-on-workato","articles":[]},"previous":{"title":"Custom OAuth profiles","level":"1.19.40.6","depth":3,"path":"connectors/slack/custom-oauth.md","ref":"connectors/slack/custom-oauth.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"connectors/snowflake.md","mtime":"2019-03-21T03:31:42.914Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-03-21T03:33:50.939Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
