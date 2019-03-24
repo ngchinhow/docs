@@ -41,9 +41,10 @@ Workbot commands allow you to trigger recipes from Teams. These recipes can then
 >**For more info, go to [Workbot commands](/workbot-for-teams/workbot-triggers.md)**.
 
 ## Setup Workbot
-In Teams, go to the Workbot welcome message and click on **Setup Workbot**.
+In Teams, go to the Workbot welcome message and click on **Login**. If you don't have yet have a Workato account, click on **create a new one** instead.
 
-![Setup Workbot](/workbot-for-teams/setup-workbot.png)
+![Setup Workbot](/assets/images/workbot-for-teams/setup-workbot.png)
+*Click on 'Login' or 'create a new one' to start setting up Workbot*
 
 This should open your browser (or a browser tab) and prompt you to log into your Microsoft account:
 
