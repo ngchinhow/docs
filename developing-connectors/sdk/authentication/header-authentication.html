@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Custom auth · Workato Docs</title>
+        <title>Header auth · Workato Docs</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -61,10 +61,10 @@
     <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="test.html" />
+    <link rel="next" href="custom-authentication.html" />
     
     
-    <link rel="prev" href="header-authentication.html" />
+    <link rel="prev" href="oauth2-authentication.html" />
     
 
     
@@ -122,7 +122,7 @@
         <!-- Title -->
         <h1>
           <i class="fa fa-circle-o-notch fa-spin"></i>
-          <a href="../../..">Custom auth</a>
+          <a href="../../..">Header auth</a>
         </h1>
       </div>
     </div>
@@ -2385,7 +2385,7 @@
       
     </li>
   
-    <li class="chapter " data-level="1.9.7.5" data-path="header-authentication.html">
+    <li class="chapter active" data-level="1.9.7.5" data-path="header-authentication.html">
       
 
       
@@ -2400,7 +2400,7 @@
       
     </li>
   
-    <li class="chapter active" data-level="1.9.7.6" data-path="custom-authentication.html">
+    <li class="chapter " data-level="1.9.7.6" data-path="custom-authentication.html">
       
 
       
@@ -9683,7 +9683,7 @@
       
     </li>
   
-    <li class="chapter active" data-level="1.22.2.3" data-path="custom-authentication.html">
+    <li class="chapter " data-level="1.22.2.3" data-path="custom-authentication.html">
       
 
       
@@ -10300,95 +10300,32 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="custom-authentication">Custom Authentication</h1>
-<p>Occasionally, the API requires an authentication mechanism different from the typical ones. The <code>custom_auth</code> type can be used in this case. The custom authentication provides you with the ability to do the following:</p>
-<ul>
-<li>acquire and/or refresh credentials</li>
-<li>Define when credentials should be refreshed</li>
-<li>Store credentials data not provided directly by user (obtained from API requests)</li>
-</ul>
-<h2 id="example-custom-authentication">Example custom authentication</h2>
-<p>This example connects to <a href="https://www.zoho.com/crm/help/api/using-authentication-token.html" target="_blank">Zoho CRM</a></p>
+                                <h1 id="header-authentication">Header Authentication</h1>
+<p>For APIs requiring header authentication, this can be easily accomplished if the token is supplied by the user directly through user input fields.</p>
+<h2 id="example-header-authentication">Example header authentication</h2>
 <pre><code class="lang-ruby"><span class="hljs-symbol">connection:</span> {
+
   <span class="hljs-symbol">fields:</span> [
     {
-      <span class="hljs-symbol">name:</span> <span class="hljs-string">&apos;email&apos;</span>
-    },
-    {
-      <span class="hljs-symbol">name:</span> <span class="hljs-string">&apos;password&apos;</span>,
-      <span class="hljs-symbol">control_type:</span> <span class="hljs-string">&apos;password&apos;</span>
+      <span class="hljs-symbol">name:</span> <span class="hljs-string">&quot;token&quot;</span>,
+      <span class="hljs-symbol">control_type:</span> <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-symbol">label:</span> <span class="hljs-string">&quot;Bearer token&quot;</span>,
+      <span class="hljs-symbol">optional:</span> <span class="hljs-keyword">false</span>,
+      <span class="hljs-symbol">hint:</span> <span class="hljs-string">&quot;Available in &apos;My Profile&apos; page&quot;</span>
     }
   ],
 
   <span class="hljs-symbol">authorization:</span> {
     <span class="hljs-symbol">type:</span> <span class="hljs-string">&apos;custom_auth&apos;</span>,
 
-    <span class="hljs-symbol">acquire:</span> lambda <span class="hljs-keyword">do</span> |connection|
-      {
-        <span class="hljs-symbol">authtoken:</span>
-          get(<span class="hljs-string">&apos;https://accounts.zoho.com/apiauthtoken/nb/create&apos;</span>).
-          params(<span class="hljs-string">&apos;SCOPE&apos;</span> =&gt; <span class="hljs-string">&apos;ZohoCRM/crmapi&apos;</span>,
-                 <span class="hljs-string">&apos;EMAIL_ID&apos;</span> =&gt; connection[<span class="hljs-string">&apos;email&apos;</span>],
-                 <span class="hljs-string">&apos;PASSWORD&apos;</span> =&gt; connection[<span class="hljs-string">&apos;password&apos;</span>],
-                 <span class="hljs-string">&apos;DISPLAY_NAME&apos;</span> =&gt; <span class="hljs-string">&apos;Workato test adapter&apos;</span>).
-          response_format_raw[<span class="hljs-regexp">/(?&lt;=AUTHTOKEN=)\h+/</span>]
-      }
-    <span class="hljs-keyword">end</span>,
-
-    <span class="hljs-symbol">refresh_on:</span> [
-      <span class="hljs-comment"># Three ways to match:</span>
-      <span class="hljs-number">401</span>, <span class="hljs-comment"># Integer HTTP response code.</span>
-      <span class="hljs-string">&apos;Unauthorized&apos;</span>, <span class="hljs-comment"># String that equals the whole body or whole title of the error response.</span>
-      /Unauthorized/, <span class="hljs-comment"># Regex that matches with the body or title of the error response.</span>
-      /Invalid Ticket Id/ <span class="hljs-comment"># The actual &quot;signal&quot; that we need to re-authorize in Zoho.</span>
-    ],
-
-    <span class="hljs-symbol">detect_on:</span> [
-      <span class="hljs-comment"># Two ways to match: String (matches whole body of the response), and:</span>
-      /^\{<span class="hljs-string">&quot;response&quot;</span><span class="hljs-symbol">:</span>\{<span class="hljs-string">&quot;error&quot;</span>/, <span class="hljs-comment"># Regex that matches the body of the response.</span>
-    ],
-
     <span class="hljs-symbol">apply:</span> lambda <span class="hljs-keyword">do</span> |connection|
-      params(<span class="hljs-symbol">authtoken:</span> connection[<span class="hljs-string">&apos;authtoken&apos;</span>])
+      headers(<span class="hljs-string">&quot;Authorization&quot;</span><span class="hljs-symbol">:</span> <span class="hljs-string">&quot;Bearer <span class="hljs-subst">#{connection[<span class="hljs-string">&quot;token&quot;</span>]}</span>&quot;</span>)
     <span class="hljs-keyword">end</span>
   }
 }
 </code></pre>
-<h2 id="acquire">acquire</h2>
-<p>Context is same as an action&apos;s execute block. You can write the require code here to acquire and store relevant credentials data to be used in the <code>apply</code> block.</p>
-<pre><code class="lang-ruby"><span class="hljs-symbol">acquire:</span> lambda <span class="hljs-keyword">do</span> |connection|
-  {
-    <span class="hljs-symbol">authtoken:</span>
-      get(<span class="hljs-string">&apos;https://accounts.zoho.com/apiauthtoken/nb/create&apos;</span>).
-      params(<span class="hljs-string">&apos;SCOPE&apos;</span> =&gt; <span class="hljs-string">&apos;ZohoCRM/crmapi&apos;</span>,
-             <span class="hljs-string">&apos;EMAIL_ID&apos;</span> =&gt; connection[<span class="hljs-string">&apos;email&apos;</span>],
-             <span class="hljs-string">&apos;PASSWORD&apos;</span> =&gt; connection[<span class="hljs-string">&apos;password&apos;</span>],
-             <span class="hljs-string">&apos;DISPLAY_NAME&apos;</span> =&gt; <span class="hljs-string">&apos;Workato test adapter&apos;</span>).
-      response_format_raw[<span class="hljs-regexp">/(?&lt;=AUTHTOKEN=)\h+/</span>]
-  }
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p>The output of this block should be a <strong>hash</strong>, which will be merged with the original connection object.</p>
-<p>This API request to the Auth token endpoint returns a raw text response with the Auth token like this:</p>
-<pre><code>AUTHTOKEN=bad18eba1ff45jk7858b8ae88a77fa30
-RESULT=TRUE
-</code></pre><p>As a result, the connection object is merged with this value after executing the <code>acquire</code> block.</p>
-<p>Original <code>connection</code> object</p>
-<pre><code class="lang-json">{
-  <span class="hljs-string">&quot;email&quot;</span>: <span class="hljs-string">&quot;john@gmail.com&quot;</span>,
-  <span class="hljs-string">&quot;password&quot;</span>: <span class="hljs-string">&quot;pinkfloyd&quot;</span>
-}
-</code></pre>
-<p><code>connection</code> object after executing <code>acquire</code> block</p>
-<pre><code class="lang-json">{
-  <span class="hljs-string">&quot;email&quot;</span>: <span class="hljs-string">&quot;john@gmail.com&quot;</span>,
-  <span class="hljs-string">&quot;password&quot;</span>: <span class="hljs-string">&quot;pinkfloyd&quot;</span>,
-  <span class="hljs-string">&quot;authtoken&quot;</span>: <span class="hljs-string">&quot;SAMPLE_TOKEN&quot;</span>
-}
-</code></pre>
-<p>This new connection object will be passed into all actions, triggers, test and pick lists as the <code>connection</code> argument.</p>
 <h2 id="apply">apply</h2>
-<p>Synonym of the <code>credentials</code> block: Basically how to apply the credentials to an action/trigger/test request. All requests made in actions, triggers, tests and pick lists will be applied with the credentials defined here.</p>
+<p>Synonym of the <code>credentials</code> block: Basically how to apply the credentials to an action/trigger/test request. All requests made in actions, triggers, tests and pick lists will be applied with the credentials defined here. In the example above, the apply block pulls the <code>token</code> field directly from user input fields in the <code>connection</code> object.</p>
 <p>Here are a list of accepted inputs into the apply block</p>
 <pre><code class="lang-ruby"><span class="hljs-symbol">apply:</span> lambda <span class="hljs-keyword">do</span> |connection|
   <span class="hljs-comment"># Adds in URL parameters passed as a hash object</span>
@@ -10402,6 +10339,7 @@ RESULT=TRUE
           <span class="hljs-symbol">code:</span> auth_code)
 
   <span class="hljs-comment"># Adds in headers into every request passed as a hash.</span>
+  <span class="hljs-comment"># The variable access_token can be retrieved from input prompts defined in the &apos;fields&apos; schema earlier or a return from the acquire block</span>
   <span class="hljs-comment"># i.e. Authorization : Bearer [given access token]</span>
   headers(<span class="hljs-string">&quot;Authorization&quot;</span><span class="hljs-symbol">:</span> <span class="hljs-string">&quot;Bearer <span class="hljs-subst">#{connection[<span class="hljs-string">&quot;access_token&quot;</span>]}</span>&quot;</span>)  
 
@@ -10412,42 +10350,9 @@ RESULT=TRUE
 <span class="hljs-keyword">end</span>
 </code></pre>
 <blockquote>
-<p>The &quot;apply&quot; block will not be applied to any requests made in &quot;acquire&quot;. So you will have to include the required credentials for a successful API request here.</p>
+<p>The <code>apply</code> block will not be applied to any requests made in <code>acquire</code>. So you will have to include the required credentials for a successful API request there.</p>
 </blockquote>
-<h2 id="refreshon">refresh_on</h2>
-<p>This is an optional array of <strong>signals</strong> that is used to identify a need to re-acquire credentials . When an erroneous response is received (400, 401, 500...), the SDK framework checks it against this list of signals. If a match is found, it triggers a re-authorization (execute <code>acquire</code>).</p>
-<p>This list is optional. If not defined, will default to one attempt at re-acquiring credentials for all errors.</p>
-<pre><code class="lang-ruby"><span class="hljs-symbol">refresh_on:</span> [
-  <span class="hljs-number">401</span>,
-  <span class="hljs-string">&apos;Unauthorized&apos;</span>,
-  <span class="hljs-regexp">/Unauthorized/</span>,
-  <span class="hljs-regexp">/Invalid Ticket Id/</span>
-]
-</code></pre>
-<p>The example here shows multiple ways that we can define &quot;signals&quot; to watch.</p>
-<ul>
-<li><code>401</code>: The response status code</li>
-<li><code>&quot;Unauthorized&quot;</code>: The exact string matching the whole body or title of response</li>
-<li><code>/Unauthorized/</code>: Regex matching the body or title of response</li>
-<li><code>/Invalid Ticket Id/</code>: The actual &quot;message&quot; to watch for in the case of the Zoho API</li>
-</ul>
-<h2 id="detecton">detect_on</h2>
-<p>Certain APIs don&apos;t signal errors with explicit response status code like a <code>401</code>. Instead, they return a <code>200</code> (pseudo successful response) with a payload that signals the error.</p>
-<p>For such APIs, an error (expired credentials, bad requests etc.) will not be picked up since it is interpreted as a successful request (Status code <code>200</code>). A match with the signals defined here will raise an error.</p>
-<p>When there is a match here, two things can happen.</p>
-<p>Firstly, there can also be a match against <code>refresh_on</code> signals. When that happens, a re-authorization is triggered (acquire block is executed) instead of raising an error. In this case, <code>detect_on</code> is used to match errors hidden behind responses with status code <code>200</code>, then used to identify that a credentials refresh is required.</p>
-<p>If a match here does not match any of the signals defined in <code>refresh_on</code>, an error will be raised.</p>
-<pre><code class="lang-ruby"><span class="hljs-symbol">detect_on:</span> [
-  <span class="hljs-string">&quot;sample error message&quot;</span>,
-  <span class="hljs-regexp">/^\{&quot;response&quot;:\{&quot;error&quot;.+$/</span>
-]
-</code></pre>
-<p>The example here shows multiple ways that we can define &quot;signals&quot; to watch</p>
-<ul>
-<li><code>&quot;sample error message&quot;</code>: The exact string matching the whole body of response</li>
-<li><code>/^\{&quot;response&quot;:\{&quot;error&quot;.+$/</code>: Regex matching the body of response</li>
-</ul>
-<p>This list is optional. If not defined, pseudo successful response will be treated as a successful request instead of raising exceptions. Note: output values of trigger and action will be affected.</p>
+<p>Check out our <a href="developing-connectors/sdk/authentication/custom-authentication.md">custom authentication documents</a> to find out other ways to authenticate your custom connector on Workato.</p>
 
                                 
                                 </section>
@@ -10530,7 +10435,7 @@ RESULT=TRUE
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Custom auth","level":"1.9.7.6","depth":3,"next":{"title":"Test","level":"1.9.7.7","depth":3,"path":"developing-connectors/sdk/authentication/test.md","ref":"developing-connectors/sdk/authentication/test.md","articles":[]},"previous":{"title":"Header auth","level":"1.9.7.5","depth":3,"path":"developing-connectors/sdk/authentication/header-authentication.md","ref":"developing-connectors/sdk/authentication/header-authentication.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"developing-connectors/sdk/authentication/custom-authentication.md","mtime":"2019-03-25T15:30:07.447Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-03-25T15:32:03.283Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Header auth","level":"1.9.7.5","depth":3,"next":{"title":"Custom auth","level":"1.9.7.6","depth":3,"path":"developing-connectors/sdk/authentication/custom-authentication.md","ref":"developing-connectors/sdk/authentication/custom-authentication.md","articles":[]},"previous":{"title":"OAuth 2.0","level":"1.9.7.4","depth":3,"path":"developing-connectors/sdk/authentication/oauth2-authentication.md","ref":"developing-connectors/sdk/authentication/oauth2-authentication.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"developing-connectors/sdk/authentication/header-authentication.md","mtime":"2019-03-25T15:30:07.447Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-03-25T15:32:03.283Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
