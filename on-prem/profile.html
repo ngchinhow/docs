@@ -10294,7 +10294,7 @@
 <li><a href="#sap-connection-profile">SAP</a></li>
 <li><a href="#jms-connection-profile">Java messaging service</a></li>
 <li><a href="#apache-kafka-connection-profile">Apache Kafka</a></li>
-<li><a href="#active-directory-connection-profile">Active directory</a></li>
+<li><a href="#active-directory-connection-profile">Active Directory</a></li>
 <li><a href="#http-resources">HTTP resource</a></li>
 <li><a href="#ntlm-connection-profile">NTLM</a></li>
 <li><a href="#command-line-scripts-profile">Command-line scripts</a></li>
@@ -10731,34 +10731,84 @@ You need to specify the base folder for file access as it will be used for resol
 <span class="hljs-attr">    username:</span> cn=Administrator
 <span class="hljs-attr">    password:</span> foobar
 <span class="hljs-attr">    base:</span> dc=acme,dc=com
+<span class="hljs-attr">    ssl:</span>
+<span class="hljs-attr">      cert:</span> /path/to/PEM-encoded-certificate-or-trusted-CA
+<span class="hljs-attr">      trustAll:</span> <span class="hljs-literal">true</span>
 </code></pre>
-<p>where profile configuration properties are:</p>
-<table>
-<thead>
-<tr>
-<th>Property name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>url</td>
-<td>The URL of the LDAP server to use. The URL should be in the format <code>ldap://myserver.example.com:389</code>. For SSL access, use the ldaps protocol and the appropriate port, e.g. <code>ldaps://myserver.example.com:636</code>. If fail-over functionality is desired, more than one URL can be specified, separated using comma (,).</td>
-</tr>
-<tr>
-<td>username</td>
-<td>The username (principal) to use when authenticating with the LDAP server. This will usually be the distinguished name of an admin user (e.g.cn=Administrator)</td>
-</tr>
-<tr>
-<td>password</td>
-<td>The password (credentials) to use when authenticating with the LDAP server</td>
-</tr>
-<tr>
-<td>base</td>
-<td>The base DN. When this attribute has been configured, all Distinguished Names supplied to and received from LDAP operations will be relative to the specified LDAP path. This can significantly simplify working against the LDAP tree; however there are several occasions when you will need to have access to the base path. For more information on this, please refer to Obtaining a reference to the base LDAP path</td>
-</tr>
-</tbody>
+<table class="unchanged rich-diff-level-one">
+  <thead>
+    <tr>
+        <th colspan="2" width="25%">Property name</th>
+        <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2">
+        <b>url</b><br>
+        <i>required</i>
+      </td>
+      <td>
+        The URL of the LDAP server to use. The URL should be in the format <code>ldap://myserver.example.com:389</code>.<br><br>
+        For SSL access, use the LDAPS protocol. The URL format is in the same format <code>ldaps://myserver.example.com:636</code>.<br><br>
+        If fail-over functionality is desired, more than one URL can be specified, separated using comma (,).
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <b>username</b><br>
+        <i>required</i>
+      </td>
+      <td>
+        The username (principal) to use when authenticating with the LDAP server. This will usually be the distinguished name of an admin user. For example, <code>cn=Administrator</code>.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <b>password</b><br>
+        <i>required</i>
+      </td>
+      <td>The password (credentials) to use when authenticating with the LDAP server</td>
+    </tr>
+    
+    <tr>
+      <td colspan="2">
+        <b>base</b><br>
+        <i>optional</i>
+      </td>
+      <td>
+        The base DN for all requests. When this attribute has been configured, all <b>Distinguished names</b> supplied to and received from LDAP operations will be relative to this LDAP path. This can significantly simplify working against a large LDAP tree.<br><br>
+        However there are several occasions when you will need to have access to the base path. For more information on this, please refer to Obtaining a reference to the base LDAP path.
+      </td>
+    </tr>
+    
+    <tr>
+      <td rowspan="4">
+        <b>ssl</b><br>
+        <i>optional</i>
+      </td>
+      <td>cert</td>
+      <td>Path the PEM encoded certificate or a trusted CA.</td>
+    </tr>
+    <tr>
+      <td>pem</td>
+      <td>Full content of a PEM encoded certificate.</td>
+    </tr>
+    <tr>
+      <td>key</td>
+      <td>
+        Private key for mutual SSL setup. <b>Required</b> if <code>pem</code> is provided.
+      </td>
+    </tr>
+    <tr>
+      <td>trustAll</td>
+      <td>
+        Set to <code>true</code> to enable self-signed certificates.
+      </td>
+    </tr>
+  </tbody>
 </table>
+
 <h2 id="http-resources">HTTP resources</h2>
 <p>The <code>http</code> configuration section allows configuring agent access to internal HTTPS resources:</p>
 <pre><code class="lang-YAML"><span class="hljs-attr">http:</span>
@@ -11148,7 +11198,7 @@ The parameter schema configuration can have properties as follows:</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Profiles","date":"2017-02-22T12:00:00.000Z","level":"1.9.8.4","depth":3,"next":{"title":"On-premises connections","level":"1.9.8.5","depth":3,"path":"on-prem/connection.md","ref":"on-prem/connection.md","articles":[]},"previous":{"title":"Upgrade agent","level":"1.9.8.3","depth":3,"path":"on-prem/upgrade.md","ref":"on-prem/upgrade.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"on-prem/profile.md","mtime":"2019-03-25T09:38:54.005Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-03-25T09:40:16.290Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Profiles","date":"2017-02-22T12:00:00.000Z","level":"1.9.8.4","depth":3,"next":{"title":"On-premises connections","level":"1.9.8.5","depth":3,"path":"on-prem/connection.md","ref":"on-prem/connection.md","articles":[]},"previous":{"title":"Upgrade agent","level":"1.9.8.3","depth":3,"path":"on-prem/upgrade.md","ref":"on-prem/upgrade.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"on-prem/profile.md","mtime":"2019-03-25T11:48:43.594Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-03-25T11:50:15.283Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
