@@ -9431,7 +9431,7 @@
 <p>8) Unzip the <code>cert.zip</code> file and move the contents (<code>cert.key</code> and <code>cert.pem</code>) to <code>C:\Program Files\Workato Agent/conf</code> directory. It should be in the same folder as the sample <code>config.yml</code> file.</p>
 <p>9) After installing your agent on your machine, you will now need to configure your agent by <a href="profile.html">creating connection profiles</a></p>
 <p>An installation instruction video for Windows is also available <a href="https://www.youtube.com/watch?v=Pu3GCk7OY6Q&amp;feature=youtu.be" target="_blank">here</a>.</p>
-<h3 id="linux--mac-os">Linux &amp; Mac OS</h3>
+<h3 id="mac-os">Mac OS</h3>
 <p>1) On the top navigation bar, click <code>Tools</code> &gt; <code>On-premises agent</code></p>
 <p><img src="../assets/images/on-prem/navigate-to-opa.gif" alt="On-premises option"></p>
 <p>2) Click <code>Create a new agent</code></p>
@@ -9443,6 +9443,39 @@
 <p>5) Unpack the agent package file into a folder of your choice, which we will refer to as <code>&lt;INSTALL_HOME&gt;</code> folder.</p>
 <p>6) Unzip the <code>cert.zip</code> file and move the contents (<code>cert.key</code> and <code>cert.pem</code>) to <code>&lt;INSTALL_HOME&gt;/conf</code> directory. It should be in the same folder as the sample <code>config.yml</code> file.</p>
 <p>7) After installing your agent on your machine, you will now need to configure your agent by <a href="profile.html">creating connection profiles</a></p>
+<h3 id="linux">Linux</h3>
+<p>In some cases, the secure network is a Linux environment where you cannot set up the OPA files using an interface. The setup will need to be done in 2 separate steps. First, download agent and cert files into a local machine (usually a work device with access to the secure remote server). Then, securely move these files into the secure remote server and set up the OPA.</p>
+<p>1) On the top navigation bar, click <code>Tools</code> &gt; <code>On-premises agent</code></p>
+<p><img src="../assets/images/on-prem/navigate-to-opa.gif" alt="On-premises option"></p>
+<p>2) Click <code>Create a new agent</code></p>
+<p><img src="../assets/images/on-prem/create-opa.png" alt="On-premises option"></p>
+<p>3) Click <code>Download key</code> and <code>Download agent</code>, which downloads a <code>cert.zip</code> file and an agent installer respectively.</p>
+<p><img src="../assets/images/on-prem/download-key-and-agent.png" alt="On-premises option"></p>
+<p>4) When downloading the agent, select the Linux operating system to download the right agent installer.</p>
+<p><img src="../assets/images/on-prem/mac-os.png" alt="On-premises option"></p>
+<p>5) Securely copy Agent package file to secure server</p>
+<pre><code class="lang-bash">$ scp -i /Users/eeshan/Projects/my_key.pem /Users/eeshan/Downloads/workato-agent-linux-x64-2.4.8.tar.gz ec2-user@ec2-3-91-231-221.compute-1.amazonaws.com:~/
+</code></pre>
+<p>6) Copy agent keys to secure server</p>
+<pre><code class="lang-bash">$ scp -i /Users/eeshan/Projects/mey_key.pem /Users/eeshan/Downloads/cert.zip ec2-user@ec2-3-91-231-221.compute-1.amazonaws.com:~/
+</code></pre>
+<p>7) Connect to secure server (Example: using SSH)</p>
+<pre><code class="lang-bash">$ ssh -i /Users/eeshan/Projects/my_key.pem ec2-user@ec2-3-91-231-221.compute-1.amazonaws.com
+</code></pre>
+<p>8) Unpack agent package file. Provide a meaningful name for the agent directory. (Defaults to <code>workato-agent</code>)</p>
+<pre><code class="lang-bash">$ tar xvzf workato-agent-linux-x64-2.4.8.tar.gz
+</code></pre>
+<p>9) Unzip agent keys</p>
+<pre><code class="lang-bash">$ unzip cert.zip
+</code></pre>
+<p>10) Move keys into the OPA <code>conf</code> folder</p>
+<pre><code class="lang-bash">$ mv cert.key workato-agent/conf/
+$ mv cert.pem workato-agent/conf/
+</code></pre>
+<p>11) Optional - move Workato agent to a desired directory in your secure server.</p>
+<pre><code class="lang-bash">$ mv workato-agent integration/workato/
+</code></pre>
+<p>12) You will now need to configure your agent by <a href="profile.html">creating connection profiles</a>.</p>
 
                                 
                                 </section>
@@ -9525,7 +9558,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Setup agent","date":"2018-05-09T12:00:00.000Z","level":"1.15.1","depth":2,"next":{"title":"Run agent","level":"1.15.2","depth":2,"path":"on-prem/run.md","ref":"on-prem/run.md","articles":[]},"previous":{"title":"On-premises connectivity","level":"1.15","depth":1,"path":"on-prem.md","ref":"on-prem.md","articles":[{"title":"Setup agent","level":"1.15.1","depth":2,"path":"on-prem/setup.md","ref":"on-prem/setup.md","articles":[]},{"title":"Run agent","level":"1.15.2","depth":2,"path":"on-prem/run.md","ref":"on-prem/run.md","articles":[]},{"title":"Upgrade agent","level":"1.15.3","depth":2,"path":"on-prem/upgrade.md","ref":"on-prem/upgrade.md","articles":[]},{"title":"Profiles","level":"1.15.4","depth":2,"path":"on-prem/profile.md","ref":"on-prem/profile.md","articles":[]},{"title":"On-premises connections","level":"1.15.5","depth":2,"path":"on-prem/connection.md","ref":"on-prem/connection.md","articles":[]},{"title":"Password encryption","level":"1.15.6","depth":2,"path":"on-prem/password-encryption.md","ref":"on-prem/password-encryption.md","articles":[]},{"title":"Proxy server","level":"1.15.7","depth":2,"path":"on-prem/proxy.md","ref":"on-prem/proxy.md","articles":[]},{"title":"Extensions","level":"1.15.8","depth":2,"path":"on-prem/extension.md","ref":"on-prem/extension.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"on-prem/setup.md","mtime":"2019-04-16T09:55:52.037Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-04-16T09:59:18.580Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Setup agent","date":"2018-05-09T12:00:00.000Z","level":"1.15.1","depth":2,"next":{"title":"Run agent","level":"1.15.2","depth":2,"path":"on-prem/run.md","ref":"on-prem/run.md","articles":[]},"previous":{"title":"On-premises connectivity","level":"1.15","depth":1,"path":"on-prem.md","ref":"on-prem.md","articles":[{"title":"Setup agent","level":"1.15.1","depth":2,"path":"on-prem/setup.md","ref":"on-prem/setup.md","articles":[]},{"title":"Run agent","level":"1.15.2","depth":2,"path":"on-prem/run.md","ref":"on-prem/run.md","articles":[]},{"title":"Upgrade agent","level":"1.15.3","depth":2,"path":"on-prem/upgrade.md","ref":"on-prem/upgrade.md","articles":[]},{"title":"Profiles","level":"1.15.4","depth":2,"path":"on-prem/profile.md","ref":"on-prem/profile.md","articles":[]},{"title":"On-premises connections","level":"1.15.5","depth":2,"path":"on-prem/connection.md","ref":"on-prem/connection.md","articles":[]},{"title":"Password encryption","level":"1.15.6","depth":2,"path":"on-prem/password-encryption.md","ref":"on-prem/password-encryption.md","articles":[]},{"title":"Proxy server","level":"1.15.7","depth":2,"path":"on-prem/proxy.md","ref":"on-prem/proxy.md","articles":[]},{"title":"Extensions","level":"1.15.8","depth":2,"path":"on-prem/extension.md","ref":"on-prem/extension.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"on-prem/setup.md","mtime":"2019-04-16T15:58:01.303Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-04-16T16:00:20.695Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
