@@ -61,7 +61,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="calling-apis.html" />
+    <link rel="next" href="access-tokens.html" />
     
     
     <link rel="prev" href="api-access-policies.html" />
@@ -3728,6 +3728,8 @@
   
     <li class="chapter active" data-level="1.19.3" data-path="api-client-mgmt.html">
       
+        <i class="fa fa-angle-right chapter__toggle"></i>
+      
 
       
         <a href="api-client-mgmt.html">
@@ -3738,6 +3740,27 @@
         </a>
       
 
+      
+        <ul class="articles">
+          
+  
+    <li class="chapter " data-level="1.19.3.1" data-path="access-tokens.html">
+      
+
+      
+        <a href="access-tokens.html">
+      
+        
+        Access Tokens
+      
+        </a>
+      
+
+      
+    </li>
+  
+
+        </ul>
       
     </li>
   
@@ -9413,8 +9436,8 @@
                                 <h1 id="managing-api-clients-and-access-policies">Managing API Clients and Access Policies</h1>
 <p>API owners can manage and monitor clients&apos; usage of their APIs from
 the Workato UI.</p>
-<p>API platform is accessible from the Tools menu. Once in the main
-API platform screen, select the &quot;Clients&quot; tab to create and
+<p>The API Platform tool is accessible from the Tools menu. Once in the main
+API Platform screen, select the &quot;Clients&quot; tab to create and
 manage API clients. A typical screen would look like this:</p>
 <p><img src="../assets/images/api-mgmt/api-new-client.png" alt="Create API Cliient">
 <em>Create API Client</em></p>
@@ -9432,20 +9455,25 @@ are making calls to your API endpoints.</p>
 to create a new access profile for that client.</p>
 <p><img src="../assets/images/api-mgmt/api-new-access-profile.png" alt="New Access Profile">
 <em>New Access Profile</em></p>
-<p>An access profile specifies the API Collections to which a client has
-access, and the policy that applies to that access (a policy is
-optional). It is also possible in this screen to specify one or more
-IP addresses as a whitelist. When this is done, only requests
+<p>The access profile screen has the following fields:</p>
+<p>1) A name (required).
+2) A description (optional).
+3) One or more API Collections to which the client has access.
+4) The policy that applies to that access (a policy is
+optional).
+5) The access method. This can be an Auth Token or a JSON Web Token (JWT).
+6) One or more IP addresses as a whitelist. When this is set, only requests
 initiated from those addresses will be allowed: all other access will
 be denied.</p>
+<p>If &quot;JSON Web Token (JWT)&quot; is selected there are two additional fields available: signing method, and secret or key. See <a href="access-tokens.html">Access Tokens</a> for details.</p>
 <p>One the access profile fields have been filled in, click on &quot;Add
 profile&quot; to create the client and save that client&apos;s associated
-profile. After this step, the screen will loook something like this:</p>
+profile. After this step, the screen will look something like this:</p>
 <p><img src="../assets/images/api-mgmt/api-client-creation.png" alt="API client creation">
 <em>API client creation</em></p>
 <p>Note the &quot;API Key&quot; field. A unique API key is generated for each client. This key is a long string of characters. It needs to be supplied to the client so that the client can connect to the API. Treat this API key as confidential information: it should be known only to the API owner and the client.</p>
 <p>An API key can be revoked, and a new one issued, by clicking on the &quot;Refresh&quot; button next to the key.</p>
-<p>Note that the new client is shown as &quot;Disabled&quot; by default. A disabled client cannot call any APIs. Moving the slider right will switch the client&apos;s status to &quot;Enabled,&quot; after which he/she will be allowed to make API calls.</p>
+<p>A client can be &quot;Disabled&quot; or &quot;Enabled.&quot; A disabled client cannot call any APIs. Moving the slider right will switch the client&apos;s status to &quot;Enabled,&quot; after which he/she will be allowed to make API calls.</p>
 
                                 
                                 </section>
@@ -9528,7 +9556,7 @@ profile. After this step, the screen will loook something like this:</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Managing API Clients and Access Profiles","date":"2018-02-02T19:41:00.000Z","level":"1.19.3","depth":2,"next":{"title":"Calling APIs","level":"1.19.4","depth":2,"path":"api-mgmt/calling-apis.md","ref":"api-mgmt/calling-apis.md","articles":[]},"previous":{"title":"API Access Policies","level":"1.19.2","depth":2,"path":"api-mgmt/api-access-policies.md","ref":"api-mgmt/api-access-policies.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"api-mgmt/api-client-mgmt.md","mtime":"2019-04-16T15:57:59.311Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-04-16T16:00:20.695Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Managing API Clients and Access Profiles","date":"2018-04-08T10:43:00.000Z","level":"1.19.3","depth":2,"next":{"title":"Access Tokens","level":"1.19.3.1","depth":3,"path":"api-mgmt/access-tokens.md","ref":"api-mgmt/access-tokens.md","articles":[]},"previous":{"title":"API Access Policies","level":"1.19.2","depth":2,"path":"api-mgmt/api-access-policies.md","ref":"api-mgmt/api-access-policies.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"api-mgmt/api-client-mgmt.md","mtime":"2019-04-17T02:09:10.236Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-04-17T02:12:25.650Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

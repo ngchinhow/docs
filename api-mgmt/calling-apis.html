@@ -64,7 +64,7 @@
     <link rel="next" href="api-security.html" />
     
     
-    <link rel="prev" href="api-client-mgmt.html" />
+    <link rel="prev" href="access-tokens.html" />
     
 
     
@@ -3728,6 +3728,8 @@
   
     <li class="chapter " data-level="1.19.3" data-path="api-client-mgmt.html">
       
+        <i class="fa fa-angle-right chapter__toggle"></i>
+      
 
       
         <a href="api-client-mgmt.html">
@@ -3738,6 +3740,27 @@
         </a>
       
 
+      
+        <ul class="articles">
+          
+  
+    <li class="chapter " data-level="1.19.3.1" data-path="access-tokens.html">
+      
+
+      
+        <a href="access-tokens.html">
+      
+        
+        Access Tokens
+      
+        </a>
+      
+
+      
+    </li>
+  
+
+        </ul>
       
     </li>
   
@@ -9410,13 +9433,15 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>APIs that are exposed through the API platform console can be called from recipes in accounts other than one owning the recipe, as well as from third-party tools, programs, and scripts.</p>
+                                <p>APIs that are exposed through the API Platform console can be called from recipes in accounts other than one owning the recipe, as well as from third-party tools, programs, and scripts. The API manager must provide to the client the Auth Token value needed to call an API Collection.</p>
+<h1 id="authorization-headers">Authorization Headers</h1>
+<p>If the Access Profile specifies the &quot;Auth Token&quot; method of authentication, then the Auth Token value must be passed by the client as the value of the &quot;API-Token&quot; header. If the authorization method is &quot;JSON Web Token,&quot; then the value of the encoded and signed token is passed in the &quot;Authorization&quot; header, using the &quot;Bearer&quot; scheme.</p>
 <h1 id="calling-an-api-endpoint-from-a-recipe">Calling an API Endpoint from a Recipe</h1>
 <p>An API Endpoint can be called from a recipe using the HTTP Connector. Select the &quot;Send request&quot; action of the Connector. The following screen shows a typical configuration for this action (in this case a POST request):</p>
 <p><img src="../assets/images/api-mgmt/api-client-request.png" alt="API Client Request">
 <em>API Client Request</em></p>
 <p>Make sure that the type of request (POST, PUT, GET) matches the API that you are calling. Any required fields need to be specified in the body (for POST and PUT) or as query parameters in the URL (for GET).</p>
-<p>Also note that an &quot;API-Token&quot; request header has been added. Its value should be set to the token that the API owner has supplied to you.</p>
+<p>Also note that an &quot;API-Token&quot; request header has been added. Its value should be set to the token that the API owner has supplied to you. (This assumes the &quot;Auth Token&quot; method of authentication)</p>
 <p>Caution: the API token should not be shared with other users. Therefore it is recommended not to make a recipe public that contains such as token.</p>
 <p>Also configure if necessary the expected Response schema from the API call.</p>
 <h1 id="testing-a-call-to-an-api">Testing a Call to an API</h1>
@@ -9511,7 +9536,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Calling APIs","date":"2018-02-03T06:23:00.000Z","level":"1.19.4","depth":2,"next":{"title":"Security Best Practices for APIs","level":"1.19.5","depth":2,"path":"api-mgmt/api-security.md","ref":"api-mgmt/api-security.md","articles":[]},"previous":{"title":"Managing API Clients and Access Profiles","level":"1.19.3","depth":2,"path":"api-mgmt/api-client-mgmt.md","ref":"api-mgmt/api-client-mgmt.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"api-mgmt/calling-apis.md","mtime":"2019-04-16T15:57:59.311Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-04-16T16:00:20.695Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Calling APIs","date":"2018-04-08T13:25:00.000Z","level":"1.19.4","depth":2,"next":{"title":"Security Best Practices for APIs","level":"1.19.5","depth":2,"path":"api-mgmt/api-security.md","ref":"api-mgmt/api-security.md","articles":[]},"previous":{"title":"Access Tokens","level":"1.19.3.1","depth":3,"path":"api-mgmt/access-tokens.md","ref":"api-mgmt/access-tokens.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"api-mgmt/calling-apis.md","mtime":"2019-04-17T02:09:10.236Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-04-17T02:12:25.650Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
