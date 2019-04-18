@@ -9460,6 +9460,7 @@
             <th>Value</th>
             <th>Description</th>
         </tr>
+    <tbody>
         <tr>
           <td>Title</td>
           <td>
@@ -9471,9 +9472,10 @@
         </tr>
         <tr>
           <td>Submit button command</td>
-          <td>Workbot command to execute when button is clicked, e.g.
-          <pre>create_ticket
-          </pre></td>
+          <td>
+            Workbot command to execute when button is clicked, e.g.
+          <code>create_ticket</code>
+          </td>
           <td>
             Choose from a list of existing recipes that can be invoked by a Workbot command.
           </td>
@@ -9481,13 +9483,13 @@
         <tr>
           <td>Parameters</td>
           <td>
-          Parameter values to pass onto the next recipe when button is clicked, e.g.<br><br><pre>{<br>  &quot;sys_id&quot;: &quot;<kbd>sys_id</kbd>&quot;<br>  &quot;summary&quot;: &quot;<kbd>Summary</kbd>&quot;,<br>  &quot;description&quot;: &quot;<kbd>Description</kbd>&quot;<br>}
+            Parameter values to pass onto the next recipe when button is clicked, e.g.<br><br><pre>{<br>  &quot;sys_id&quot;: &quot;<kbd>sys_id</kbd>&quot;<br>  &quot;summary&quot;: &quot;<kbd>Summary</kbd>&quot;,<br>  &quot;description&quot;: &quot;<kbd>Description</kbd>&quot;<br>}
           </pre></td>
           <td>
-          Key in name-value pairs to pass onto the next recipe as parameter values. Remember to wrap datapills with double quotes.
+            Key in name-value pairs to pass onto the next recipe as parameter values. Remember to wrap datapills with double quotes.
           </td>
         </tr>
-      
+      </tbody>
     </thead></table>
 
 <h2 id="configuring-a-pick-list-and-choices">Configuring a pick list and choices</h2>
@@ -9504,6 +9506,7 @@
             <th>Input field</th>
             <th>Description</th>
         </tr>
+    <tbody>
         <tr>
           <td>Pick list name</td>
           <td>
@@ -9513,13 +9516,13 @@
         <tr>
           <td>Pick list style</td>
           <td>
-          <b>Compact</b> displays choices in a drop-down menu, while <b>Expanded</b> displays all choices with radio buttons.
+            <b>Compact</b> displays choices in a drop-down menu, while <b>Expanded</b> displays all choices with radio buttons.
           </td>
         </tr>
         <tr>
           <td>Choice parameter</td>
           <td>
-          Parameter name to store the choice value. This name-value pair will be passed on as additional parameters.
+            Parameter name to store the choice value. This name-value pair will be passed on as additional parameters.
           </td>
         </tr>
         <tr>
@@ -9534,7 +9537,7 @@
             Value of the choice. If chosen, passes its value to the <b>Choice parameter</b>.
           </td>
         </tr>
-      
+      </tbody>
     </thead></table>
 
 <h2 id="task-modules">Task modules</h2>
@@ -9578,6 +9581,7 @@
             <th>Value</th>
             <th>Description</th>
         </tr>
+    <tbody>
         <tr>
           <td>Button source list</td>
           <td>
@@ -9600,9 +9604,10 @@
         </tr>
         <tr>
           <td>Submit button command</td>
-          <td>Workbot command to execute when button is clicked, e.g.
-          <pre>assign_user
-          </pre></td>
+          <td>
+            Workbot command to execute when button is clicked, e.g.
+          <code>assign_user</code>
+          </td>
           <td>
             Choose from a list of existing Workbot command recipes or key in a new command. Clicking on this button will trigger the recipe with the corresponding command trigger.
           </td>
@@ -9613,10 +9618,10 @@
             Pass additional parameters when user submits by clicking a button. Format should be JSON with name-value pairs, e.g.<br><br><pre>{<br>  &quot;opportunity_id&quot;: &quot;<kbd>Opportunity ID</kbd>&quot;,<br>  &quot;stage&quot;: &quot;<kbd>Stage</kbd>&quot;<br>}<samp>
           </samp></pre></td>
           <td>
-          Key in name-value pairs to pass onto the next recipe as additional parameters.
+            Key in name-value pairs to pass onto the next recipe as additional parameters.
           </td>
         </tr>
-      
+      </tbody>
     </thead></table>
 
 <h1 id="learn-more">Learn more</h1>
@@ -9707,7 +9712,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Workbot buttons task modules & pick lists","date":"2018-05-21T10:23:00.000Z","level":"1.18.4","depth":2,"next":{"title":"API Management","level":"1.19","depth":1,"path":"api-management.md","ref":"api-management.md","articles":[{"title":"API Collections and Endpoint Management","level":"1.19.1","depth":2,"path":"api-mgmt/api-collections.md","ref":"api-mgmt/api-collections.md","articles":[]},{"title":"API Access Policies","level":"1.19.2","depth":2,"path":"api-mgmt/api-access-policies.md","ref":"api-mgmt/api-access-policies.md","articles":[]},{"title":"Managing API Clients and Access Profiles","level":"1.19.3","depth":2,"path":"api-mgmt/api-client-mgmt.md","ref":"api-mgmt/api-client-mgmt.md","articles":[{"title":"Access Tokens","level":"1.19.3.1","depth":3,"path":"api-mgmt/access-tokens.md","ref":"api-mgmt/access-tokens.md","articles":[]}]},{"title":"Calling APIs","level":"1.19.4","depth":2,"path":"api-mgmt/calling-apis.md","ref":"api-mgmt/calling-apis.md","articles":[]},{"title":"Security Best Practices for APIs","level":"1.19.5","depth":2,"path":"api-mgmt/api-security.md","ref":"api-mgmt/api-security.md","articles":[]}]},"previous":{"title":"Workbot actions","level":"1.18.3","depth":2,"path":"workbot-for-teams/workbot-actions.md","ref":"workbot-for-teams/workbot-actions.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"workbot-for-teams/buttons-choices-task-modules.md","mtime":"2019-04-17T02:09:12.404Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-04-17T02:12:25.650Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Workbot buttons task modules & pick lists","date":"2018-05-21T10:23:00.000Z","level":"1.18.4","depth":2,"next":{"title":"API Management","level":"1.19","depth":1,"path":"api-management.md","ref":"api-management.md","articles":[{"title":"API Collections and Endpoint Management","level":"1.19.1","depth":2,"path":"api-mgmt/api-collections.md","ref":"api-mgmt/api-collections.md","articles":[]},{"title":"API Access Policies","level":"1.19.2","depth":2,"path":"api-mgmt/api-access-policies.md","ref":"api-mgmt/api-access-policies.md","articles":[]},{"title":"Managing API Clients and Access Profiles","level":"1.19.3","depth":2,"path":"api-mgmt/api-client-mgmt.md","ref":"api-mgmt/api-client-mgmt.md","articles":[{"title":"Access Tokens","level":"1.19.3.1","depth":3,"path":"api-mgmt/access-tokens.md","ref":"api-mgmt/access-tokens.md","articles":[]}]},{"title":"Calling APIs","level":"1.19.4","depth":2,"path":"api-mgmt/calling-apis.md","ref":"api-mgmt/calling-apis.md","articles":[]},{"title":"Security Best Practices for APIs","level":"1.19.5","depth":2,"path":"api-mgmt/api-security.md","ref":"api-mgmt/api-security.md","articles":[]}]},"previous":{"title":"Workbot actions","level":"1.18.3","depth":2,"path":"workbot-for-teams/workbot-actions.md","ref":"workbot-for-teams/workbot-actions.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"workbot-for-teams/buttons-choices-task-modules.md","mtime":"2019-04-18T12:29:46.181Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-04-18T12:32:06.841Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -9449,7 +9449,7 @@
 <p>This reply can be a simple text message about a task&apos;s completion, or more advanced like prompting users on subsequent actions.</p>
 <p>You can optionally include 1 fact set (a set of name-value pairs), 1 pick list, buttons and images.</p>
 <blockquote>
-<p>Post reply must always be paired with a Workbot commands</p>
+<p><strong>Post reply must always be paired with a Workbot commands</strong></p>
 </blockquote>
 <p><img src="../assets/images/workbot-for-teams/post-reply-recipe.png" alt="Post reply recipe">
 <em>Recipe perspective of the post reply example above</em></p>
@@ -9503,107 +9503,135 @@
 <em>Post reply &amp; Post message follow the same message structure</em></p>
 <p>The post reply action follows a fixed structure, with a preceding <strong>Envelope text</strong> and <strong>Message container</strong>. Text input fields support markdown syntax.</p>
 <p>The table below lists the input fields in the post reply action.</p>
-<p><table class="unchanged rich-diff-level-one"></table></p>
-<p><thead>
-  <tr>
-    <th>Group</th>
-    <th>Input</th>
-    <th>Description<br></th>
-  </tr>
-</thead></p>
-<p><tbody>
-  <tr>
-    <td></td>
-    <td>Envelope text*</td>
-    <td>First message, preceding any text, images, or other elements in the message container. Support markdown.</td>
-  </tr>
-  <tr>
-    <td rowspan="4">Heading*</td>
-    <td>Heading</td>
-    <td>Heading text.</td>
-  </tr>
-  <tr>
-    <td>Subheading*</td>
-    <td>Subheading text. Support markdown.</td>
-  </tr>
-  <tr>
-    <td>Link text*</td>
-    <td>Use markdown to add text links, e.g. <code>[Salesforce](https://www.salesforce.com/)</code>.</td>
-  </tr>
-  <tr>
-    <td>Heading thumbnail</td>
-    <td>Provide image URL of thumbnail. Displays to the left of heading text.</td>
-  </tr>
-  <tr>
-    <td rowspan="2">Body*</td>
-    <td>Body text</td>
-    <td>Main body text of message. Supports markdown</td>
-  </tr>
-  <tr>
-    <td>Image</td>
-    <td>Provide image URL. Displays below body text.</td>
-  </tr>
-  <tr>
-    <td rowspan="2">Fact set<br></td>
-    <td>Text*</td>
-    <td>Title of fact.</td>
-  </tr>
-  <tr>
-    <td>Value*</td>
-    <td>Value of fact.</td>
-  </tr>
-  <tr>
-    <td rowspan="5">Pick list</td>
-    <td>Pick list name*</td>
-    <td>Name of picklist. Displays before choices.</td>
-  </tr>
-  <tr>
-    <td>Pick list style</td>
-    <td>Compact displays choices in a drop-down menu, while Expanded displays all choices with radio buttons.</td>
-  </tr>
-  <tr>
-    <td>Choice parameter</td>
-    <td>Parameter name to store the choice value. This parameter-value pair will be passed on as additional parameters.</td>
-  </tr>
-  <tr>
-    <td>Text (choice)</td>
-    <td>Text to display for choice.</td>
-  </tr>
-  <tr>
-    <td>Value (choice)</td>
-    <td>Value to pass to <b>Choice parameter</b> if chosen.</td>
-  </tr>
-  <tr>
-    <td rowspan="4">Buttons</td>
-    <td>Prompt text for buttons*</td>
-    <td>Prompt that displays before buttons. Useful in providing context for the buttons that follow.</td>
-  </tr>
-  <tr>
-    <td>Text (button)</td>
-    <td>Text to display for button.</td>
-  </tr>
-  <tr>
-    <td>Submit button command</td>
-    <td>Workbot command to invoke when users submit this button.</td>
-  </tr>
-  <tr>
-    <td>Additional parameters</td>
-    <td>Pass additional parameters when user submits by clicking a button. Format should be JSON with name-value pairs, e.g.<br><br><pre>{
-   &quot;opportunity_id&quot;:&quot;<kbd>Opportunity ID</kbd>&quot;,
-   &quot;stage&quot;:&quot;<kbd>Stage</kbd>&quot;
-}<samp></samp></pre></td>
-  </tr>
-  <tr>
-    <td rowspan="2">Advanced</td>
-    <td>Post as raw JSON</td>
-    <td>For advanced users to fully customize the message formatting.</td>
-  </tr>
-  <tr>
-    <td>Message to update</td>
-    <td>Use message ID from the output of a post reply or post message action to update that message with this one.</td>
-  </tr>
-</tbody>
-&lt;/table&gt;
+<p><table class="unchanged rich-diff-level-one">
+  <thead>
+    <tr>
+      <th>Group</th>
+      <th>Input</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td></td>
+        <td>Envelope text*</td>
+        <td>
+          First message, preceding any text, images, or other elements in the message container. Support markdown.
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="4">Heading*</td>
+        <td>Heading</td>
+        <td>Heading text.</td>
+      </tr>
+      <tr>
+        <td>Subheading*</td>
+        <td>Subheading text. Supports markdown.</td>
+      </tr>
+      <tr>
+        <td>Link text*</td>
+        <td>
+          Use markdown to add text links, e.g. <code>[Salesforce](https://www.salesforce.com/)</code>.
+        </td>
+      </tr>
+      <tr>
+        <td>Heading thumbnail</td>
+        <td>
+          Provide image URL of thumbnail. Displays to the left of heading text.
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="2">Body*</td>
+        <td>Body text</td>
+        <td>
+          Main body text of message. Supports markdown.
+        </td>
+      </tr>
+      <tr>
+        <td>Image</td>
+        <td>
+          Provide image URL. Displays below body text.
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="2">Fact set</td>
+        <td>Text*</td>
+        <td>Title of fact.</td>
+      </tr>
+      <tr>
+        <td>Value*</td>
+        <td>Value of fact.</td>
+      </tr>
+      <tr>
+        <td rowspan="5">Pick list</td>
+        <td>Pick list name*</td>
+        <td>
+          Name of picklist. Displays before choices.
+        </td>
+      </tr>
+      <tr>
+        <td>Pick list style</td>
+        <td>
+          Compact displays choices in a drop-down menu, while Expanded displays all choices with radio buttons.
+        </td>
+      </tr>
+      <tr>
+        <td>Choice parameter</td>
+        <td>
+          Parameter name to store the choice value. This parameter-value pair will be passed on as additional parameters.
+        </td>
+      </tr>
+      <tr>
+        <td>Text (choice)</td>
+        <td>Text to display for choice.</td>
+      </tr>
+      <tr>
+        <td>Value (choice)</td>
+        <td>
+          Value to pass to <b>Choice parameter</b> if chosen.
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="4">Buttons</td>
+        <td>Prompt text for buttons*</td>
+        <td>
+          Prompt that displays before buttons. Useful in providing context for the buttons that follow.
+        </td>
+      </tr>
+      <tr>
+        <td>Text (button)</td>
+        <td>Text to display for button.</td>
+      </tr>
+      <tr>
+        <td>Submit button command</td>
+        <td>
+          Workbot command to invoke when users submit this button.
+        </td>
+      </tr>
+      <tr>
+        <td>Additional parameters</td>
+        <td>
+          Pass additional parameters when user submits by clicking a button. Format should be JSON with name-value pairs, e.g.<br><br><pre>{
+       &quot;opportunity_id&quot;:&quot;<kbd>Opportunity ID</kbd>&quot;,
+       &quot;stage&quot;:&quot;<kbd>Stage</kbd>&quot;
+}</pre>
+      </td>
+      </tr>
+      <tr>
+        <td rowspan="2">Advanced</td>
+        <td>Post as raw JSON</td>
+        <td>
+          For advanced users to fully customize the message formatting.
+        </td>
+      </tr>
+      <tr>
+        <td>Message to update</td>
+        <td>
+          Use message ID from the output of a post reply or post message action to update that message with this one.
+        </td>
+      </tr>
+    </tbody>
+</table>
 *Supports markdown</p>
 <h1 id="learn-more">Learn more</h1>
 <ul>
@@ -9693,7 +9721,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Workbot actions","date":"2017-03-30T05:00:00.000Z","level":"1.18.3","depth":2,"next":{"title":"Workbot buttons task modules & pick lists","level":"1.18.4","depth":2,"path":"workbot-for-teams/buttons-choices-task-modules.md","ref":"workbot-for-teams/buttons-choices-task-modules.md","articles":[]},"previous":{"title":"Workbot triggers","level":"1.18.2","depth":2,"path":"workbot-for-teams/workbot-triggers.md","ref":"workbot-for-teams/workbot-triggers.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"workbot-for-teams/workbot-actions.md","mtime":"2019-04-17T02:09:12.404Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-04-17T02:12:25.650Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Workbot actions","date":"2017-03-30T05:00:00.000Z","level":"1.18.3","depth":2,"next":{"title":"Workbot buttons task modules & pick lists","level":"1.18.4","depth":2,"path":"workbot-for-teams/buttons-choices-task-modules.md","ref":"workbot-for-teams/buttons-choices-task-modules.md","articles":[]},"previous":{"title":"Workbot triggers","level":"1.18.2","depth":2,"path":"workbot-for-teams/workbot-triggers.md","ref":"workbot-for-teams/workbot-triggers.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"workbot-for-teams/workbot-actions.md","mtime":"2019-04-18T12:29:46.181Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-04-18T12:32:06.841Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
