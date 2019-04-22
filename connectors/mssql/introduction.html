@@ -9486,7 +9486,7 @@
 <h3 id="permissions-required-to-connect">Permissions required to connect</h3>
 <p>At minimum, the database user account must be granted <code>SELECT</code> permission to the database specified in the <a href="#how-to-connect-to-sql-server-on-workato">connection</a>. Check out the example below to find out more about how to set permissions if you are the one setting up the SQL server connection for your business.</p>
 <blockquote>
-<details><summary><b>How to set up permissions</b></summary>
+<details><summary><b>Click here to find out how to set up permissions</b></summary>
 
 If we are trying to connect to a named database (<kbd>HR_PROD</kbd>) in a SQL Server instance, using a new database user <kbd>workato</kbd>, the following example queries can be used.
 
@@ -9499,12 +9499,12 @@ Replace <kbd>password1234</kbd> with a secure password. Remember to set a passwo
 
 This allows the user to have login access to the SQL Server instance. However, this user will not have access to any tables.
 
-The next step is to grant permission to the necessary tables. There are a few ways to do this. One of the simplest ways is to grant access based on a **ROLE**.
-<br>[Find out more about database-level roles here](https://docs.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-2017)
+The next step is to grant permission to the necessary tables. There are a few ways to do this. One of the simplest ways is to grant access based on a <b>ROLE</b>.
+<br><a href="https://docs.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-2017" target="_blank">Find out more about database-level roles here</a>
 <br>
 <pre><code style="display: block; white-space: pre-wrap;">ALTER ROLE db_datareader ADD MEMBER workato;
 </code></pre>
-Alternatively, we can grant access to all tables defined by a **SCHEMA**, <kbd>HR</kbd>.
+Alternatively, we can grant access to all tables defined by a <b>SCHEMA</b>, <kbd>HR</kbd>.
 
 <pre><code style="display: block; white-space: pre-wrap;">GRANT SELECT,INSERT ON SCHEMA :: HR TO workato;
 </code></pre>
@@ -9572,7 +9572,7 @@ This should return the following minimum permission to create a SQL Server conne
 <h3 id="operators">Operators</h3>
 <p>At the foundation of any <code>WHERE</code> statement, we have operators that help us filter and identify what rows we want returned in Workato. By chaining operators in the same way you would do it in SQL, you&apos;ll be able to use them to create robust and complex filters on your data directly from Workato.</p>
 <blockquote>
-<details><summary><b>List of operators</b></summary>
+<details><summary><b>Click here for a list of operators</b></summary>
 
 <table class="unchanged rich-diff-level-one">
   <thead>
@@ -9683,7 +9683,7 @@ This should return the following minimum permission to create a SQL Server conne
 <p><br></p>
 <p>Here are some of the common data types you can expect to see. A more comprehensive list can be found <a href="https://www.w3schools.com/sql/sql_datatypes.asp" target="_blank">here</a></p>
 <blockquote>
-<details><summary><b>List of common data types</b></summary>
+<details><summary><b>Click here for a list of common data types</b></summary>
 <table class="unchanged rich-diff-level-one">
   <thead>
     <tr>
@@ -9720,12 +9720,12 @@ This should return the following minimum permission to create a SQL Server conne
     </tr>
     <tr>
       <td>varchar(n)</td>
-      <td><b>Variable</b> width character string of length `n`</td>
+      <td><b>Variable</b> width character string of length <code>n</code></td>
       <td><code>Foo_bar</code></td>
     </tr>
     <tr>
       <td>nchar(n)</td>
-      <td><b>Fixed</b> width character string of length `n`</td>
+      <td><b>Fixed</b> width character string of length <code>n</code></td>
       <td><code>Foo</code> where n = 3</td>
     </tr>
     <tr>
@@ -9745,7 +9745,7 @@ This should return the following minimum permission to create a SQL Server conne
     </tr>
     <tr>
       <td>time</td>
-      <td>Store a time only to an accuracy of 100 nanoseconds. Minimum length `hh:mm:ss` and maximum length `hh:mm:ss.nnnnnnnn`</td>
+      <td>Store a time only to an accuracy of 100 nanoseconds. Minimum length <code>hh:mm:ss</code> and maximum length <code>hh:mm:ss.nnnnnnnn</code></td>
       <td><code>08:30:12</code>,<code>09:12:20.12898400</code></td>
     </tr>
   </tbody>
@@ -9772,7 +9772,7 @@ This should return the following minimum permission to create a SQL Server conne
 <center><i>`WHERE` condition with enclosed identifier</i></center>
 
 <p><br></p>
-<p>Check out below for more details into the functionality you can explore with your <code>WHERE</code> conditions.</p>
+<p>Click the tabs below for more details into the functionality you can explore with your <code>WHERE</code> conditions.</p>
 <blockquote>
 <details><summary>Using <code>AND</code> and <code>OR</code> in your <code>WHERE</code> conditions</summary>
 <code>WHERE</code> conditions can also be used in conjunction with basic SQL logical operators like <code>AND</code> and <code>OR</code> to add more filters on the rows you return.
@@ -9789,11 +9789,11 @@ Your <code>WHERE</code> condition can also contain subqueries. The following que
 
 <pre><code style="display: block; white-space: pre-wrap;">id in (select compensation_id from users where active = 0)</code></pre>
 
-When used in a **Delete rows** action, this will delete all rows in the `compensation` table related to users who are no longer active (`active = 0`).
+When used in a <b>Delete rows</b> action, this will delete all rows in the <code>compensation</code> table related to users who are no longer active (<code>active = 0</code>).
 
 <br>
 
-![Using subquery in WHERE condition](/assets/images/mssql/subquery-in-where-condition.png)
+<img src="../../assets/images/mssql/subquery-in-where-condition.png" alt="Using subquery in WHERE condition">
 <center><i>Using subquery in WHERE condition</i></center>
 
 </details>
@@ -9806,7 +9806,7 @@ When used in a **Delete rows** action, this will delete all rows in the `compens
 <p>In all triggers and some actions, this is a required input. Values from this selected column are used to uniquely identify rows in the selected table. As such, the values in the selected column must be unique. Typically, this column is the <strong>primary key</strong> of the table (e.g. <code>ID</code>).</p>
 <p>When used in a trigger, this column must be incremental. This constraint is required because the trigger uses values from this column to look for new rows. In each poll, the trigger queries for rows with a unique key value greater than the previous greatest value.</p>
 <blockquote>
-<details><summary><b>Example</b></summary>
+<details><summary><b>Click here for a detailed example</b></summary>
 Let&apos;s use a simple example to illustrate this behavior. We have a <b>New row trigger</b> that processed rows from a table. The <b>unique key</b> configured for this trigger is <code>ID</code>. The last row processed has <code>100</code> as it&apos;s <code>ID</code> value. In the next poll, the trigger will use <code>&gt;= 101</code> as the condition to look for new rows.
 Performance of a trigger can be improved if the column selected to be used as the <b>unique key</b> is indexed.
 </details>
@@ -9817,7 +9817,7 @@ Performance of a trigger can be improved if the column selected to be used as th
 <p>When a row is updated, the <strong>Unique key</strong> value remains the same. However, it should have it&apos;s <strong>Sort column</strong> updated to reflect the last updated time. Following this logic, Workato keeps track of values in this column together with values in the selected <strong>Unique key</strong> column. When a change in the <strong>Sort column</strong> value is observed, an updated row event will be recorded and processed by the trigger.</p>
 <p>For SQL Server, only <strong>datetime2</strong> and <strong>datetime</strong> column types can be used.</p>
 <blockquote>
-<details><summary><b>Example</b></summary>
+<details><summary><b>Click here for a detailed example</b></summary>
 Let&apos;s use a simple example to illustrate this behavior. We have a <b>new/updated row trigger</b> that processed rows from a table. The <b>Unique key</b> and <b>Sort column</b> configured for this trigger is <code>ID</code> and <code>UPDATED_AT</code> respectively. The last row processed by the trigger has <code>ID</code> value of <code>100</code> and <code>UPDATED_AT</code> value of <code>2018-05-09 16:00:00.000000</code>. In the next poll, the trigger will query for new rows that satisfy either of the 2 conditions: <br>
 1. <code>UPDATED_AT&apos;2018-05-09 16:00:00.000000&apos;</code> <br>
 2. <code>ID</code> &gt; 100 AND <code>UPDATED_AT = &apos;2018-05-09 16:00:00.000000&apos;</code>
@@ -9944,7 +9944,7 @@ Let&apos;s use a simple example to illustrate this behavior. We have a <b>new/up
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","date":"2018-03-13T12:40:00.000Z","level":"1.20.43.1","depth":3,"next":{"title":"New row trigger","level":"1.20.43.2","depth":3,"path":"connectors/mssql/new-row-trigger.md","ref":"connectors/mssql/new-row-trigger.md","articles":[]},"previous":{"title":"SQL Server","level":"1.20.43","depth":2,"path":"connectors/mssql.md","ref":"connectors/mssql.md","articles":[{"title":"Introduction","level":"1.20.43.1","depth":3,"path":"connectors/mssql/introduction.md","ref":"connectors/mssql/introduction.md","articles":[]},{"title":"New row trigger","level":"1.20.43.2","depth":3,"path":"connectors/mssql/new-row-trigger.md","ref":"connectors/mssql/new-row-trigger.md","articles":[]},{"title":"New/updated row trigger","level":"1.20.43.3","depth":3,"path":"connectors/mssql/updated-row-trigger.md","ref":"connectors/mssql/updated-row-trigger.md","articles":[]},{"title":"Select actions","level":"1.20.43.4","depth":3,"path":"connectors/mssql/select.md","ref":"connectors/mssql/select.md","articles":[]},{"title":"Insert actions","level":"1.20.43.5","depth":3,"path":"connectors/mssql/insert.md","ref":"connectors/mssql/insert.md","articles":[]},{"title":"Update actions","level":"1.20.43.6","depth":3,"path":"connectors/mssql/update.md","ref":"connectors/mssql/update.md","articles":[]},{"title":"Upsert actions","level":"1.20.43.7","depth":3,"path":"connectors/mssql/upsert.md","ref":"connectors/mssql/upsert.md","articles":[]},{"title":"Delete actions","level":"1.20.43.8","depth":3,"path":"connectors/mssql/delete.md","ref":"connectors/mssql/delete.md","articles":[]},{"title":"Run custom SQL action","level":"1.20.43.9","depth":3,"path":"connectors/mssql/run_sql.md","ref":"connectors/mssql/run_sql.md","articles":[]},{"title":"Execute stored procedure","level":"1.20.43.10","depth":3,"path":"connectors/mssql/stored-procedure.md","ref":"connectors/mssql/stored-procedure.md","articles":[]},{"title":"Best Practices","level":"1.20.43.11","depth":3,"path":"connectors/mssql/best-practices.md","ref":"connectors/mssql/best-practices.md","articles":[]},{"title":"Use cases","level":"1.20.43.12","depth":3,"path":"connectors/database-common-use-cases.md","ref":"connectors/database-common-use-cases.md","articles":[]},{"title":"Troubleshooting","level":"1.20.43.13","depth":3,"path":"connectors/mssql/trouble-shooting.md","ref":"connectors/mssql/trouble-shooting.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"connectors/mssql/introduction.md","mtime":"2019-04-20T00:49:43.306Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-04-20T00:50:51.415Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Introduction","date":"2018-03-13T12:40:00.000Z","level":"1.20.43.1","depth":3,"next":{"title":"New row trigger","level":"1.20.43.2","depth":3,"path":"connectors/mssql/new-row-trigger.md","ref":"connectors/mssql/new-row-trigger.md","articles":[]},"previous":{"title":"SQL Server","level":"1.20.43","depth":2,"path":"connectors/mssql.md","ref":"connectors/mssql.md","articles":[{"title":"Introduction","level":"1.20.43.1","depth":3,"path":"connectors/mssql/introduction.md","ref":"connectors/mssql/introduction.md","articles":[]},{"title":"New row trigger","level":"1.20.43.2","depth":3,"path":"connectors/mssql/new-row-trigger.md","ref":"connectors/mssql/new-row-trigger.md","articles":[]},{"title":"New/updated row trigger","level":"1.20.43.3","depth":3,"path":"connectors/mssql/updated-row-trigger.md","ref":"connectors/mssql/updated-row-trigger.md","articles":[]},{"title":"Select actions","level":"1.20.43.4","depth":3,"path":"connectors/mssql/select.md","ref":"connectors/mssql/select.md","articles":[]},{"title":"Insert actions","level":"1.20.43.5","depth":3,"path":"connectors/mssql/insert.md","ref":"connectors/mssql/insert.md","articles":[]},{"title":"Update actions","level":"1.20.43.6","depth":3,"path":"connectors/mssql/update.md","ref":"connectors/mssql/update.md","articles":[]},{"title":"Upsert actions","level":"1.20.43.7","depth":3,"path":"connectors/mssql/upsert.md","ref":"connectors/mssql/upsert.md","articles":[]},{"title":"Delete actions","level":"1.20.43.8","depth":3,"path":"connectors/mssql/delete.md","ref":"connectors/mssql/delete.md","articles":[]},{"title":"Run custom SQL action","level":"1.20.43.9","depth":3,"path":"connectors/mssql/run_sql.md","ref":"connectors/mssql/run_sql.md","articles":[]},{"title":"Execute stored procedure","level":"1.20.43.10","depth":3,"path":"connectors/mssql/stored-procedure.md","ref":"connectors/mssql/stored-procedure.md","articles":[]},{"title":"Best Practices","level":"1.20.43.11","depth":3,"path":"connectors/mssql/best-practices.md","ref":"connectors/mssql/best-practices.md","articles":[]},{"title":"Use cases","level":"1.20.43.12","depth":3,"path":"connectors/database-common-use-cases.md","ref":"connectors/database-common-use-cases.md","articles":[]},{"title":"Troubleshooting","level":"1.20.43.13","depth":3,"path":"connectors/mssql/trouble-shooting.md","ref":"connectors/mssql/trouble-shooting.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"connectors/mssql/introduction.md","mtime":"2019-04-22T08:47:31.875Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-04-22T08:50:03.846Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
