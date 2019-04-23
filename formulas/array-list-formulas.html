@@ -9555,8 +9555,8 @@
 </table>
 <h1 id="hashes">Hashes</h1>
 <p>A hash is a dictionary-like collection of unique keys and their values. They are similar to Lists, but where a List uses integers as its index, a Hash allows you to use any object type. Hashes enumerate their values in the order that the corresponding keys were inserted.</p>
-<p>Let&apos;s take the example of a hash with 2 values, with item_name as &quot;Acme widgets&quot; and item_quantity as 10.</p>
-<pre><code class="lang-ruby">line_item = { <span class="hljs-symbol">item_name:</span> &#x201C;Acme widgets&#x201D;, <span class="hljs-symbol">item_qty:</span> <span class="hljs-number">10</span> }
+<p>Let&apos;s take the example of a hash with 2 values, with <code>&apos;Acme widgets&apos;</code> and <code>10</code> as the values of item_name and item_quantity respectively.</p>
+<pre><code class="lang-ruby">line_item = { <span class="hljs-string">&apos;item_name&apos;</span> =&gt; <span class="hljs-string">&apos;Acme widgets&apos;</span>, <span class="hljs-string">&apos;item_qty&apos;</span> =&gt; <span class="hljs-number">10</span> }
 </code></pre>
 <table>
 <thead>
@@ -9577,11 +9577,11 @@
 </tbody>
 </table>
 <h1 id="list-of-hashes">List of hashes</h1>
-<p>In Workato, you will mostly run into lists of hashes. Let&#x2019;s look at a Quickbooks invoice which has a number of line items. It will be represented as an list of hashes.</p>
-<pre><code class="lang-ruby">line_items = [                                     <span class="hljs-comment"># list</span>
-  { <span class="hljs-symbol">item_name:</span> &#x201C;Acme widgets&#x201D;, <span class="hljs-symbol">item_qty:</span> <span class="hljs-number">10</span>  },    <span class="hljs-comment"># hash 1</span>
-  { <span class="hljs-symbol">item_name:</span> &#x201C;RR bearings&#x201D;,  <span class="hljs-symbol">item_qty:</span> <span class="hljs-number">100</span> },    <span class="hljs-comment"># hash 2</span>
-  { <span class="hljs-symbol">item_name:</span> &#x201C;Coyote tyres&#x201D;, <span class="hljs-symbol">item_qty:</span> <span class="hljs-number">7</span>   }     <span class="hljs-comment"># hash 3</span>
+<p>In Workato, you will mostly run into lists of hashes. Let&apos;s look at a Quickbooks invoice which has a number of line items. It will be represented as an list of hashes.</p>
+<pre><code class="lang-ruby">line_items = [                                          <span class="hljs-comment"># list</span>
+  { <span class="hljs-string">&apos;item_name&apos;</span> =&gt; <span class="hljs-string">&apos;Acme widgets&apos;</span>, <span class="hljs-string">&apos;item_qty&apos;</span> =&gt; <span class="hljs-number">10</span> },  <span class="hljs-comment"># hash 1</span>
+  { <span class="hljs-string">&apos;item_name&apos;</span> =&gt; <span class="hljs-string">&apos;RR bearings&apos;</span>, <span class="hljs-string">&apos;item_qty&apos;</span> =&gt; <span class="hljs-number">100</span> },  <span class="hljs-comment"># hash 2</span>
+  { <span class="hljs-string">&apos;item_name&apos;</span> =&gt; <span class="hljs-string">&apos;Coyote tyres&apos;</span>, <span class="hljs-string">&apos;item_qty&apos;</span> =&gt; <span class="hljs-number">7</span> }    <span class="hljs-comment"># hash 3</span>
 ]
 </code></pre>
 <h1 id="formulas">Formulas</h1>
@@ -9619,7 +9619,7 @@
 <td>joan@nbc.com</td>
 <td>MA</td>
 <td>NBC</td>
-<td>1000</td>
+<td>10000</td>
 </tr>
 <tr>
 <td>Jack</td>
@@ -9632,10 +9632,34 @@
 </table>
 <p>This is the Contacts list in a list of hashes form.</p>
 <pre><code class="lang-ruby">[
-  { <span class="hljs-symbol">name:</span> <span class="hljs-string">&apos;Joe&apos;</span>,  <span class="hljs-symbol">email:</span> &#x2019;joe@abc.com&#x2019;,  <span class="hljs-symbol">state:</span> &#x2019;CA&#x2019;, <span class="hljs-symbol">company:</span> &#x2019;ABC&#x2019;, <span class="hljs-symbol">company_rev:</span> &#x2019;<span class="hljs-number">1000</span>&#x2019; },
-  { <span class="hljs-symbol">name:</span> <span class="hljs-string">&apos;Jill&apos;</span>, <span class="hljs-symbol">email:</span> &#x2019;jill@nbc.com&#x2019;, <span class="hljs-symbol">state:</span> &#x2019;MA&#x2019;, <span class="hljs-symbol">company:</span> &#x2019;NBC&#x2019;, <span class="hljs-symbol">company_rev:</span> &#x2019;<span class="hljs-number">1000</span>&#x2019; },
-  { <span class="hljs-symbol">name:</span> <span class="hljs-string">&apos;Joan&apos;</span>, <span class="hljs-symbol">email:</span> &#x2019;joan@nbc.com&#x2019;, <span class="hljs-symbol">state:</span> &#x2019;MA&#x2019;, <span class="hljs-symbol">company:</span> &#x2019;NBC&#x2019;, <span class="hljs-symbol">company_rev:</span> &#x2019;<span class="hljs-number">1000</span>&#x2019; },
-  { <span class="hljs-symbol">name:</span> <span class="hljs-string">&apos;Jack&apos;</span>, <span class="hljs-symbol">email:</span> &#x2019;jack@hbo.com&#x2019;, <span class="hljs-symbol">state:</span> &#x2019;CA&#x2019;, <span class="hljs-symbol">company:</span> &#x2019;HBO&#x2019;, <span class="hljs-symbol">company_rev:</span> &#x2019;<span class="hljs-number">30000</span>&#x2019; }
+  {
+    <span class="hljs-string">&apos;name&apos;</span> =&gt; <span class="hljs-string">&apos;Joe&apos;</span>,
+    <span class="hljs-string">&apos;email&apos;</span> =&gt; <span class="hljs-string">&apos;joe@abc.com&apos;</span>,
+    <span class="hljs-string">&apos;state&apos;</span> =&gt; <span class="hljs-string">&apos;CA&apos;</span>,
+    <span class="hljs-string">&apos;company&apos;</span> =&gt; <span class="hljs-string">&apos;ABC&apos;</span>,
+    <span class="hljs-string">&apos;company_rev&apos;</span> =&gt; <span class="hljs-number">1000</span>
+  },
+  {
+    <span class="hljs-string">&apos;name&apos;</span> =&gt; <span class="hljs-string">&apos;Jill&apos;</span>,
+    <span class="hljs-string">&apos;email&apos;</span> =&gt; <span class="hljs-string">&apos;jill@nbc.com&apos;</span>,
+    <span class="hljs-string">&apos;state&apos;</span> =&gt; <span class="hljs-string">&apos;MA&apos;</span>,
+    <span class="hljs-string">&apos;company&apos;</span> =&gt; <span class="hljs-string">&apos;NBC&apos;</span>,
+    <span class="hljs-string">&apos;company_rev&apos;</span> =&gt; <span class="hljs-number">1000</span>
+  },
+  {
+    <span class="hljs-string">&apos;name&apos;</span> =&gt; <span class="hljs-string">&apos;Joan&apos;</span>,
+    <span class="hljs-string">&apos;email&apos;</span> =&gt; <span class="hljs-string">&apos;joan@nbc.com&apos;</span>,
+    <span class="hljs-string">&apos;state&apos;</span> =&gt; <span class="hljs-string">&apos;MA&apos;</span>,
+    <span class="hljs-string">&apos;company&apos;</span> =&gt; <span class="hljs-string">&apos;NBC&apos;</span>,
+    <span class="hljs-string">&apos;company_rev&apos;</span> =&gt; <span class="hljs-number">10000</span>
+  },
+  {
+    <span class="hljs-string">&apos;name&apos;</span> =&gt; <span class="hljs-string">&apos;Jack&apos;</span>,
+    <span class="hljs-string">&apos;email&apos;</span> =&gt; <span class="hljs-string">&apos;jack@hbo.com&apos;</span>,
+    <span class="hljs-string">&apos;state&apos;</span> =&gt; <span class="hljs-string">&apos;CA&apos;</span>,
+    <span class="hljs-string">&apos;company&apos;</span> =&gt; <span class="hljs-string">&apos;HBO&apos;</span>,
+    <span class="hljs-string">&apos;company_rev&apos;</span> =&gt; <span class="hljs-number">30000</span>
+  }
 ]
 </code></pre>
 <h2 id="first">first</h2>
@@ -9651,15 +9675,15 @@
 <tbody>
 <tr>
 <td><code>[&quot;Jean&quot;, &quot;Marie&quot;].first</code></td>
-<td>&quot;Jean&quot;</td>
+<td><code>&quot;Jean&quot;</code></td>
 </tr>
 <tr>
 <td><code>[&quot;Ms&quot;, &quot;Jean&quot;, &quot;Marie&quot;].first</code></td>
-<td>&quot;Ms&quot;</td>
+<td><code>&quot;Ms&quot;</code></td>
 </tr>
 <tr>
 <td><code>[&quot;Ms&quot;, &quot;Jean&quot;, &quot;Marie&quot;].first(2)</code></td>
-<td>[&quot;Ms&quot;, &quot;Jean&quot;]</td>
+<td><code>[&quot;Ms&quot;, &quot;Jean&quot;]</code></td>
 </tr>
 </tbody>
 </table>
@@ -9677,23 +9701,65 @@
 <tbody>
 <tr>
 <td><code>[&quot;Jean&quot;, &quot;Marie&quot;].last</code></td>
-<td>&quot;Marie&quot;</td>
+<td><code>&quot;Marie&quot;</code></td>
 </tr>
 <tr>
 <td><code>[&quot;Ms&quot;, &quot;Jean&quot;, &quot;Marie&quot;].last</code></td>
-<td>&quot;Marie&quot;</td>
+<td><code>&quot;Marie&quot;</code></td>
 </tr>
 <tr>
 <td><code>[&quot;Ms&quot;, &quot;Jean&quot;, &quot;Marie&quot;].last(2)</code></td>
-<td>[&quot;Jean&quot;, &quot;Marie&quot;]</td>
+<td><code>[&quot;Jean&quot;, &quot;Marie&quot;]</code></td>
 </tr>
 </tbody>
 </table>
 <hr>
 <h2 id="where">where</h2>
-<p>Retrieves only the rows (hashes) which meet the WHERE condition specified.</p>
+<p>Retrieves only the rows (hashes) which satisfy the specified WHERE condition. This formula accepts a single argument in the form of a hash with one or more key-value pairs.</p>
+<p>The default operand for the condition is <strong>equal to</strong> (<code>==</code>). This formula also supports the following operands. Operands should be added to the end of key separated by a space.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Notation</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Equal to (default)</td>
+<td>==</td>
+<td><code>leads.where(&apos;state&apos;: &apos;CA&apos;)</code></td>
+</tr>
+<tr>
+<td>More than</td>
+<td>&gt;</td>
+<td><code>leads.where(&apos;company_revenue &gt;&quot;: 10000)</code></td>
+</tr>
+<tr>
+<td>More than or equal to</td>
+<td>&gt;=</td>
+<td><code>leads.where(&apos;company_revenue &gt;=&quot;: 10000)</code></td>
+</tr>
+<tr>
+<td>Less than</td>
+<td>&lt;</td>
+<td><code>leads.where(&apos;company_revenue &lt;&quot;: 10000)</code></td>
+</tr>
+<tr>
+<td>Less than or equal to</td>
+<td>&lt;=</td>
+<td><code>leads.where(&apos;company_revenue &lt;=&quot;: 10000)</code></td>
+</tr>
+<tr>
+<td>Not equal to</td>
+<td>!=</td>
+<td><code>leads.where(&apos;state !=&apos;: &apos;CA&apos;)</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="example-of-simple-where-formula">Example of simple where formula</h3>
-<p><code>contacts.where(&quot;state ==&quot;: &quot;CA&quot;)</code> returns the following rows:</p>
+<p><code>contacts.where(&apos;state&apos;: &apos;CA&apos;)</code> returns the following rows:</p>
 <table>
 <thead>
 <tr>
@@ -9723,23 +9789,35 @@
 </table>
 <p>These rows will be expressed as a list of hashes:</p>
 <pre><code class="lang-ruby">[
-  { <span class="hljs-symbol">name:</span> &#x2019;Joe&#x2019;,  <span class="hljs-symbol">email:</span> &#x2019;joe@abc.com&#x2019;,  <span class="hljs-symbol">state:</span> &#x2019;CA&#x2019;, <span class="hljs-symbol">company:</span> &#x2019;ABC&#x2019;, <span class="hljs-symbol">company_rev:</span> &#x2019;<span class="hljs-number">1000</span>&#x2019; },
-  { <span class="hljs-symbol">name:</span> &#x2019;Jack&#x2019;, <span class="hljs-symbol">email:</span> &#x2019;jack@hbo.com&#x2019;, <span class="hljs-symbol">state:</span> &#x2019;CA&#x2019;, <span class="hljs-symbol">company:</span> &#x2019;HBO&#x2019;, <span class="hljs-symbol">company_rev:</span> &#x2019;<span class="hljs-number">1000</span>&#x2019; }
+  {
+    <span class="hljs-string">&apos;name&apos;</span> =&gt; <span class="hljs-string">&apos;Joe&apos;</span>,
+    <span class="hljs-string">&apos;email&apos;</span> =&gt; <span class="hljs-string">&apos;joe@abc.com&apos;</span>,
+    <span class="hljs-string">&apos;state&apos;</span> =&gt; <span class="hljs-string">&apos;CA&apos;</span>,
+    <span class="hljs-string">&apos;company&apos;</span> =&gt; <span class="hljs-string">&apos;ABC&apos;</span>,
+    <span class="hljs-string">&apos;company_rev&apos;</span> =&gt; <span class="hljs-number">1000</span>
+  },
+  {
+    <span class="hljs-string">&apos;name&apos;</span> =&gt; <span class="hljs-string">&apos;Jack&apos;</span>,
+    <span class="hljs-string">&apos;email&apos;</span> =&gt; <span class="hljs-string">&apos;jack@hbo.com&apos;</span>,
+    <span class="hljs-string">&apos;state&apos;</span> =&gt; <span class="hljs-string">&apos;CA&apos;</span>,
+    <span class="hljs-string">&apos;company&apos;</span> =&gt; <span class="hljs-string">&apos;HBO&apos;</span>,
+    <span class="hljs-string">&apos;company_rev&apos;</span> =&gt; <span class="hljs-number">30000</span>
+  }
 ]
 </code></pre>
-<p>The following is a simple WHERE formula retrieving lead records with the company Delphi Chemicals.
-<img src="../assets/images/formula-docs/non-nested-where-formula.png" alt="Simple where formula retrieving lead records from company Delphi Chemicals">
-<em>Simple where formula retrieving lead records from company Delphi Chemicals</em></p>
-<h3 id="example-of-where-formula-for-nested-fields">Example of where formula for nested fields</h3>
-<p>The WHERE formula can be nested to filter for records by nested values in the datatree.</p>
-<p><img src="../assets/images/formula-docs/nested-where-formula.png" alt="Nested where formula retrieving lead records with an address in USA">
-<em>Nested where formula retrieving records with an address in USA</em></p>
-<p>This is in contrast to a simple WHERE formula, where the filtering happens for non-nested values in the datatree:</p>
+<p>The following is a simple WHERE formula retrieving lead records with the company Delphi Chemicals.</p>
+<p><code>leads.where(&apos;Company&apos;: &apos;Delphi Chemicals&apos;)</code></p>
 <p><img src="../assets/images/formula-docs/non-nested-where-formula.png" alt="Simple where formula retrieving lead records from company Delphi Chemicals">
 <em>Simple where formula retrieving lead records from company Delphi Chemicals</em></p>
+<h3 id="example-of-where-formula-for-nested-fields">Example of where formula for nested fields</h3>
+<p>Sometimes, the field(s) you want to filter are nested. In that case, the WHERE condition should use nested fields syntax.</p>
+<p><code>leads.where(&apos;Address.Country&apos;: &apos;USA&apos;)</code></p>
+<p><img src="../assets/images/formula-docs/nested-where-formula.png" alt="Nested where formula retrieving lead records with an address in USA">
+<em>Nested where formula retrieving records with an address in USA</em></p>
 <h3 id="example-of-compound-where-formula">Example of compound where formula</h3>
 <p>A compound WHERE formula will retrieve only the rows that matches all the conditions.</p>
-<p><code>contacts.where(&quot;state ==&quot;: &quot;CA&quot;, &quot;company_revenue &gt;=&quot;: 10000)</code> returns the following rows:</p>
+<p><code>contacts.where(&apos;state&apos;: &apos;CA&apos;, &apos;company_revenue &gt;=&quot;: 10000)</code></p>
+<p>will returns the following row(s):</p>
 <table>
 <thead>
 <tr>
@@ -9762,12 +9840,116 @@
 </table>
 <p>These rows will be expressed as a list of hashes:</p>
 <pre><code class="lang-ruby">[
-  { <span class="hljs-symbol">name:</span> &#x2019;Jack&#x2019;, <span class="hljs-symbol">email:</span> &#x2019;jack@hbo.com&#x2019;, <span class="hljs-symbol">state:</span> &#x2019;CA&#x2019;, <span class="hljs-symbol">company:</span> &#x2019;HBO&#x2019;, <span class="hljs-symbol">company_rev:</span> &#x2019;<span class="hljs-number">1000</span>&#x2019; }
+  {
+    <span class="hljs-string">&apos;name&apos;</span> =&gt; <span class="hljs-string">&apos;Jack&apos;</span>,
+    <span class="hljs-string">&apos;email&apos;</span> =&gt; <span class="hljs-string">&apos;jack@hbo.com&apos;</span>,
+    <span class="hljs-string">&apos;state&apos;</span> =&gt; <span class="hljs-string">&apos;CA&apos;</span>,
+    <span class="hljs-string">&apos;company&apos;</span> =&gt; <span class="hljs-string">&apos;HBO&apos;</span>,
+    <span class="hljs-string">&apos;company_rev&apos;</span> =&gt; <span class="hljs-number">30000</span>
+  }
+]
+</code></pre>
+<h3 id="example-of-multiple-matches">Example of multiple matches</h3>
+<p>You can filter out records based on a particular field against more than 1 value. This is done by passing an array value in the WHERE condition.</p>
+<p><code>contacts.where(&apos;company&apos;: [&apos;ABC&apos;,&apos;HBO&apos;])</code></p>
+<p>This WHERE condition will return rows where the company is either <strong>ABC</strong> or <strong>HBO</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>email</th>
+<th>state</th>
+<th>company</th>
+<th>company_rev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Joe</td>
+<td>joe@abc.om</td>
+<td>CA</td>
+<td>ABC</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>Jack</td>
+<td>jack@hbo.com</td>
+<td>CA</td>
+<td>HBO</td>
+<td>30000</td>
+</tr>
+</tbody>
+</table>
+<p>These rows will be returned as a list of hashes.</p>
+<pre><code class="lang-ruby">[
+  {
+    <span class="hljs-string">&apos;name&apos;</span> =&gt; <span class="hljs-string">&apos;Joe&apos;</span>,
+    <span class="hljs-string">&apos;email&apos;</span> =&gt; <span class="hljs-string">&apos;joe@abc.com&apos;</span>,
+    <span class="hljs-string">&apos;state&apos;</span> =&gt; <span class="hljs-string">&apos;CA&apos;</span>,
+    <span class="hljs-string">&apos;company&apos;</span> =&gt; <span class="hljs-string">&apos;ABC&apos;</span>,
+    <span class="hljs-string">&apos;company_rev&apos;</span> =&gt; <span class="hljs-number">1000</span>
+  },
+  {
+    <span class="hljs-string">&apos;name&apos;</span> =&gt; <span class="hljs-string">&apos;Jack&apos;</span>,
+    <span class="hljs-string">&apos;email&apos;</span> =&gt; <span class="hljs-string">&apos;jack@hbo.com&apos;</span>,
+    <span class="hljs-string">&apos;state&apos;</span> =&gt; <span class="hljs-string">&apos;CA&apos;</span>,
+    <span class="hljs-string">&apos;company&apos;</span> =&gt; <span class="hljs-string">&apos;HBO&apos;</span>,
+    <span class="hljs-string">&apos;company_rev&apos;</span> =&gt; <span class="hljs-number">30000</span>
+  }
+]
+</code></pre>
+<h3 id="example-of-pattern-matching">Example of pattern matching</h3>
+<p>You can also filter out records using regex. This is done by passing a regex instead of a string.</p>
+<p><code>contacts.where(&apos;name&apos;: /^Jo/)</code></p>
+<p>This WHERE condition will return rows where the name starts with <strong>Jo</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>email</th>
+<th>state</th>
+<th>company</th>
+<th>company_rev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Joe</td>
+<td>joe@abc.om</td>
+<td>CA</td>
+<td>ABC</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>Joan</td>
+<td>joan@nbc.com</td>
+<td>MA</td>
+<td>NBC</td>
+<td>10000</td>
+</tr>
+</tbody>
+</table>
+<p>These rows will be expressed as a list of hashes:</p>
+<pre><code class="lang-ruby">[
+  {
+    <span class="hljs-string">&apos;name&apos;</span> =&gt; <span class="hljs-string">&apos;Joe&apos;</span>,
+    <span class="hljs-string">&apos;email&apos;</span> =&gt; <span class="hljs-string">&apos;joe@abc.com&apos;</span>,
+    <span class="hljs-string">&apos;state&apos;</span> =&gt; <span class="hljs-string">&apos;CA&apos;</span>,
+    <span class="hljs-string">&apos;company&apos;</span> =&gt; <span class="hljs-string">&apos;ABC&apos;</span>,
+    <span class="hljs-string">&apos;company_rev&apos;</span> =&gt; <span class="hljs-number">1000</span>
+  },
+  {
+    <span class="hljs-string">&apos;name&apos;</span> =&gt; <span class="hljs-string">&apos;Joan&apos;</span>,
+    <span class="hljs-string">&apos;email&apos;</span> =&gt; <span class="hljs-string">&apos;joan@nbc.com&apos;</span>,
+    <span class="hljs-string">&apos;state&apos;</span> =&gt; <span class="hljs-string">&apos;MA&apos;</span>,
+    <span class="hljs-string">&apos;company&apos;</span> =&gt; <span class="hljs-string">&apos;NBC&apos;</span>,
+    <span class="hljs-string">&apos;company_rev&apos;</span> =&gt; <span class="hljs-number">10000</span>
+  }
 ]
 </code></pre>
 <h3 id="example-of-complex-reduction">Example of complex reduction</h3>
 <p>If a series of WHERE conditions are chained, the formula evaluates each where condition in series.</p>
-<p><code>contacts.where(&quot;state ==&quot;: &quot;CA&quot;).where(&quot;company_revenue &gt;=&quot;: 10000)</code> returns the following rows, which is the same as the compound where formula:</p>
+<p><code>contacts.where(&apos;state&apos;: &apos;CA&apos;).where(&apos;company_revenue &gt;=&apos;: 10000)</code> returns the following rows, which is the same as the compound where formula:</p>
 <table>
 <thead>
 <tr>
@@ -9789,7 +9971,7 @@
 </tbody>
 </table>
 <p>In this case, however, the chaining will result in an intermediary array:</p>
-<p><code>contacts.where(&quot;state ==&quot;: &quot;CA&quot;)</code> first returns:</p>
+<p><code>contacts.where(&apos;state&apos;: &apos;CA&apos;)</code> first returns:</p>
 <table>
 <thead>
 <tr>
@@ -9817,7 +9999,7 @@
 </tr>
 </tbody>
 </table>
-<p>And <code>.where(&quot;company_revenue &gt;=&quot;: 10000)</code> filters this intermediary array further to return only:</p>
+<p>And <code>.where(&apos;company_revenue &gt;=&apos;: 10000)</code> filters this intermediary array further to return only:</p>
 <table>
 <thead>
 <tr>
@@ -9840,7 +10022,13 @@
 </table>
 <p>Results will be expressed as a list of hashes:</p>
 <pre><code class="lang-ruby">[
-  { <span class="hljs-symbol">name:</span> &#x2019;Jack&#x2019;, <span class="hljs-symbol">email:</span> &#x2019;jack@hbo.com&#x2019;, <span class="hljs-symbol">state:</span> &#x2019;CA&#x2019;, <span class="hljs-symbol">company:</span> &#x2019;HBO&#x2019;, <span class="hljs-symbol">company_rev:</span> &#x2019;<span class="hljs-number">1000</span>&#x2019; }
+  {
+    <span class="hljs-string">&apos;name&apos;</span> =&gt; <span class="hljs-string">&apos;Jack&apos;</span>,
+    <span class="hljs-string">&apos;email&apos;</span> =&gt; <span class="hljs-string">&apos;jack@hbo.com&apos;</span>,
+    <span class="hljs-string">&apos;state&apos;</span> =&gt; <span class="hljs-string">&apos;CA&apos;</span>,
+    <span class="hljs-string">&apos;company&apos;</span> =&gt; <span class="hljs-string">&apos;HBO&apos;</span>,
+    <span class="hljs-string">&apos;company_rev&apos;</span> =&gt; <span class="hljs-string">&apos;1000&apos;</span>
+  }
 ]
 </code></pre>
 <hr>
@@ -10388,7 +10576,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"List formulas","date":"2017-03-30T05:00:00.000Z","level":"1.8.5","depth":2,"next":{"title":"Other formulas","level":"1.8.6","depth":2,"path":"formulas/other-formulas.md","ref":"formulas/other-formulas.md","articles":[]},"previous":{"title":"Date formulas","level":"1.8.4","depth":2,"path":"formulas/date-formulas.md","ref":"formulas/date-formulas.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"formulas/array-list-formulas.md","mtime":"2019-04-22T08:47:31.891Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-04-22T08:50:03.846Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"List formulas","date":"2017-03-30T05:00:00.000Z","level":"1.8.5","depth":2,"next":{"title":"Other formulas","level":"1.8.6","depth":2,"path":"formulas/other-formulas.md","ref":"formulas/other-formulas.md","articles":[]},"previous":{"title":"Date formulas","level":"1.8.4","depth":2,"path":"formulas/date-formulas.md","ref":"formulas/date-formulas.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"formulas/array-list-formulas.md","mtime":"2019-04-23T02:38:02.987Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-04-23T02:39:25.723Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
