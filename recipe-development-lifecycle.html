@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Recipe development lifecycle · Workato Docs</title>
+        <title>Recipe lifecycle management · Workato Docs</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -61,7 +61,7 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="recipe-development-lifecycle.html" />
+    <link rel="next" href="recipe-development-lifecycle/export.html" />
     
     
     <link rel="prev" href="workflow.html" />
@@ -122,7 +122,7 @@
         <!-- Title -->
         <h1>
           <i class="fa fa-circle-o-notch fa-spin"></i>
-          <a href=".">Recipe development lifecycle</a>
+          <a href=".">Recipe lifecycle management</a>
         </h1>
       </div>
     </div>
@@ -2344,7 +2344,7 @@
         <a href="recipe-development-lifecycle.html">
       
         
-        Recipe development lifecycle
+        Recipe lifecycle management
       
         </a>
       
@@ -2353,32 +2353,14 @@
         <ul class="articles">
           
   
-    <li class="chapter " data-level="1.14.1" data-path="recipe-development-lifecycle.html">
-      
-        <i class="fa fa-angle-right chapter__toggle"></i>
+    <li class="chapter " data-level="1.14.1" data-path="recipe-development-lifecycle/export.html">
       
 
       
-        <a href="recipe-development-lifecycle.html#packages">
+        <a href="recipe-development-lifecycle/export.html">
       
         
-        Packages
-      
-        </a>
-      
-
-      
-        <ul class="articles">
-          
-  
-    <li class="chapter " data-level="1.14.1.1" data-path="recipe-development-lifecycle.html">
-      
-
-      
-        <a href="recipe-development-lifecycle.html#exporting-packages">
-      
-        
-        Exporting packages
+        Export
       
         </a>
       
@@ -2386,38 +2368,18 @@
       
     </li>
   
-    <li class="chapter " data-level="1.14.1.2" data-path="recipe-development-lifecycle.html">
+    <li class="chapter " data-level="1.14.2" data-path="recipe-development-lifecycle/import.html">
       
 
       
-        <a href="recipe-development-lifecycle.html#importing-packages">
+        <a href="recipe-development-lifecycle/import.html">
       
         
-        Importing packages
+        Import
       
         </a>
       
 
-      
-    </li>
-  
-    <li class="chapter " data-level="1.14.1.3" data-path="recipe-development-lifecycle.html">
-      
-
-      
-        <a href="recipe-development-lifecycle.html#packages-import-behaviour">
-      
-        
-        Packages import behaviour
-      
-        </a>
-      
-
-      
-    </li>
-  
-
-        </ul>
       
     </li>
   
@@ -9435,104 +9397,31 @@
                                 
                                 <h1 id="recipe-lifecycle-management">Recipe lifecycle management</h1>
 <p>Organizations typically plan, develop, test and deploy new integrations with a recipe development lifecycle. This may involve moving recipes from a development environment to a testing environment, or from a testing environment to a production/deployment environment.</p>
-<p>On Workato, teams can move sets of recipes and their dependencies (e.g. connections, callable recipes, custom connectors) from one environment to another, via the use of this feature. This allows teams to maintain their integration recipes across their different teams&apos; environments.</p>
-<h2 id="importexport">Import/export</h2>
-<p>Users can export and import their recipes as packages. Here&apos;s a list of assets that are exported in a package:</p>
+<p>Recipe lifecycle management is one of the features that enables teams to collaborate concurrently in a planned and controlled recipe development effort. This tool allows the export and import of packages which contain recipes and their dependencies (lookup tables, message templates etc.). This allows teams to maintain their integration recipes across their different teams&apos; environments.</p>
+<h2 id="packages">Packages</h2>
+<p>Users can export and import their recipes as packages. Here&apos;s a list of assets that can be exported in a package:</p>
 <ul>
-<li>recipes in a chosen folder</li>
-<li>sub-folders and recipes in those sub-folders</li>
-<li>associated connections</li>
-<li>associated custom connectors</li>
-<li>associated callable recipes</li>
-<li>all account properties</li>
-<li>all lookup tables</li>
-<li>all shared schemas</li>
-<li>all message templates</li>
+<li>Recipes in a chosen folder</li>
+<li>Sub-folders and recipes in those sub-folders</li>
+<li>Associated connections</li>
+<li>Associated custom connectors (SDK connectors)</li>
+<li>Associated callable recipes</li>
+<li>Associated lookup tables</li>
+<li>Associated shared schemas</li>
+<li>Associated message templates</li>
+<li>Associated account properties</li>
 </ul>
-<p>With this feature, users can move these assets easily across different Workato accounts.</p>
-<p>Importing and exporting are useful when teams are collaborating across different Workato accounts, for example, if the development team wishes to move recipes over to the QA team&apos;s Workato account, or to the production Workato account. Consultants can also utilize this feature to move comprehensive integrations into their clients&apos; accounts.</p>
-<p>The packages feature is enabled only for certain Workato plans. Check the <a href="https://www.workato.com/pricing?audience=general" target="_blank">Pricing and plans page</a> or reach out to Workato sales representatives at +1 (844) 469-6752 to find out more.</p>
-<p>For Workato accounts with the recipe development lifecycle feature enabled, users will be able to see the option when they click on Tools &gt; All Tools &gt; Recipe Lifecycle Management.</p>
+<p>The import and export of packages are useful when teams are collaborating across different Workato accounts, for example, if the development team wishes to move recipes over to the QA team&apos;s Workato account, or to the production Workato account. Consultants can also utilize this feature to move comprehensive integrations into their clients&apos; accounts.</p>
+<p>The Recipe lifecycle management feature is enabled only for certain Workato plans. Check the <a href="https://www.workato.com/pricing?audience=general" target="_blank">Pricing and plans page</a> or reach out to Workato sales representatives at +1 (844) 469-6752 to find out more.</p>
+<p>For Workato accounts with the Recipe lifecycle management feature enabled, users will be able to see the option when they click on Tools &gt; All Tools &gt; Recipe Lifecycle Management.</p>
 <p><img src="assets/images/features/packages/navigate-to-recipelifecycle.gif" alt="RLM in tools gif">
 <em>Recipe lifecycle management in Tools</em></p>
-<p>Upon clicking the option on the Tools page, you&apos;ll be brought into the Import/Export Feed. Here, you will find the buttons to export or import your packages as well as a list of all the past imports and exports done by team members.</p>
-<p><img src="assets/images/features/packages/import-export-feed.png" alt="Import export feed">
-<em>Feed showing all past imports and exports</em></p>
-<h3 id="exporting-packages">Exporting packages</h3>
-<p>To begin exporting your recipes, ensure that all the recipes you wish to export are grouped together in a Workato folder. All associated connections, custom connectors and callable recipes will also be bundled into the package automatically. All account properties and lookup tables in that Workato account are also bundled into the package. Once the package is created, the user can download the package as a zip file.</p>
-<p>In the example below, 2 recipes can be found in the <strong>Customer Sync</strong> folder. In these recipes, the user utilizes assets such as callable recipes and lookup tables.</p>
-<p>To export a folder as a package, click on the <strong>Export</strong> button. You will be brought into an export wizard that guides you through exporting a recipe and its related assets.</p>
-<p><img src="assets/images/features/packages/export-packages-select-folder2.png" alt="Export packages - select folder to export">
-<em>Select a folder to export and define the lookup table export</em></p>
-<p>Select the folder to export. In the second dropdown, select whether lookup table data should be exported in the package. Selecting &apos;Yes&apos; will allow all the lookup tables and their line data to be exported. If you leave the option as &apos;No&apos;, only the header row in the lookup table will be exported.</p>
-<p>Please note that if a lookup table with the same name the same table already exists in your destination Workato account, the imported content will be added to the lookup table. There will be duplicate entries if the new, imported content matches the existing content. You should remove the lookup table or rename the existing lookup table in your destination account before importing the package to prevent unwanted duplication.</p>
-<p>Once a folder has been selected, the assets that will be exported to a package will be shown on screen for review.</p>
-<p><img src="assets/images/features/packages/export-packages-review2.png" alt="Export packages - review assets">
-<em>Review the folder&apos;s assets to be exported</em></p>
-<p>If it looks right, click on <strong>Next</strong> to proceed.</p>
-<p>The folder will be exported once <strong>Next</strong> has been clicked. Workato will generate a zip file to be downloaded. This zip file will contain all the assets related to the recipe for it to work when imported into another account.</p>
-<p><img src="assets/images/features/packages/export-packages-complete2.png" alt="Export packages - export completed">
-<em>Folder has been successfully exported as a package and is ready for download</em></p>
-<h3 id="importing-packages">Importing packages</h3>
-<p>To import a package, click on the &apos;Import&apos; button on the Import/Export Feed. You will be brought to a wizard that will guide you through the import process.</p>
-<p><img src="assets/images/features/packages/import-packages-select-folder2.gif" alt="Import packages - select destination folder">
-<em>Select a destination folder to import your packages into</em></p>
-<p>Find the package to upload from your computer and select a destination Workato folder to import these recipes into. You can also choose whether to import the content of lookup tables. Once a zip file has been uploaded, you will be able to preview the assets which will be imported into your Workato folder.</p>
-<p><img src="assets/images/features/packages/import-packages-preview2.png" alt="Review import">
-<em>Reviewing the assets to be imported</em></p>
-<p>For each asset, details about whether the asset will be created, or whether it would overwrite an existing asset (with the same name), is included in grey italics.</p>
-<p>When importing a package for the first time, or when importing a package into a new folder, all assets will be created with &apos;Add&apos; in italics. When importing a package for the second (or more) time into the same folder, as long as the assets have the same names, the imported assets will overwrite existing assets in the target folder and show &apos;Update&apos; in italics.</p>
-<p>Once the package has been imported into your Workato account, the success screen will appear. Click on &apos;View in folders&apos; to see the imported recipes.</p>
-<p><img src="assets/images/features/packages/import-packages-successful2.png" alt="Successfully importing a package">
-<em>Success screen for package import</em></p>
-<h2 id="packages-import-behaviour">Packages import behaviour</h2>
-<p>The following table details how an imported package&apos;s assets are moved into your Workato account.</p>
-<table>
-<thead>
-<tr>
-<th>Dependency type</th>
-<th>What Workato does when package is imported</th>
-<th>Location</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Recipes</td>
-<td><strong>Overwrites</strong> recipe if a recipe with the same name exists in the folder. <br> <strong>Creates</strong> new recipe if no recipe with the same name exists in the folder.</td>
-<td>Selected folder</td>
-</tr>
-<tr>
-<td>Custom connectors</td>
-<td>Overwrites existing custom connector if connector with same name already exists in the Workato account. Creates new connector if no connector with the same name exists in the Workato account.</td>
-<td>Developer</td>
-</tr>
-<tr>
-<td>Connections</td>
-<td>Creates a connection placeholder. The user should connect the application after importing. Nothing is done if a connection with the same name already exists.</td>
-<td>Connections</td>
-</tr>
-<tr>
-<td>Lookup tables</td>
-<td>Creates a lookup table with the header rows. Imports the lookup table data if selected during export and import.</td>
-<td>Lookup table</td>
-</tr>
-<tr>
-<td>Properties</td>
-<td>Adds properties to existing properties in the Workato account. Does nothing if a property with the same name already exists.</td>
-<td>Properties</td>
-</tr>
-<tr>
-<td>Shared schemas</td>
-<td>Adds the schema to existing shared schemas in the Workato account or updates it if a schema with the same name already exists.</td>
-<td>Schema reuse</td>
-</tr>
-<tr>
-<td>Message templates</td>
-<td>Adds the message template to existing templates in the Workato account or updates it if a template with the same name already exists.</td>
-<td>Message templates</td>
-</tr>
-</tbody>
-</table>
+<h2 id="feature-walkthrough">Feature walkthrough</h2>
+<p>Learn more about the process of using the recipe lifecycle management feature in the following documents:</p>
+<ul>
+<li><a href="recipe-development-lifecycle/export.html">Export</a></li>
+<li><a href="recipe-development-lifecycle/import.html">Import</a></li>
+</ul>
 
                                 
                                 </section>
@@ -9615,7 +9504,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Recipe development lifecycle","date":"2017-05-31T15:00:00.000Z","level":"1.14","depth":1,"next":{"title":"Packages","level":"1.14.1","depth":2,"anchor":"#packages","path":"recipe-development-lifecycle.md","ref":"recipe-development-lifecycle.md#packages","articles":[{"title":"Exporting packages","level":"1.14.1.1","depth":3,"anchor":"#exporting-packages","path":"recipe-development-lifecycle.md","ref":"recipe-development-lifecycle.md#exporting-packages","articles":[]},{"title":"Importing packages","level":"1.14.1.2","depth":3,"anchor":"#importing-packages","path":"recipe-development-lifecycle.md","ref":"recipe-development-lifecycle.md#importing-packages","articles":[]},{"title":"Packages import behaviour","level":"1.14.1.3","depth":3,"anchor":"#packages-import-behaviour","path":"recipe-development-lifecycle.md","ref":"recipe-development-lifecycle.md#packages-import-behaviour","articles":[]}]},"previous":{"title":"Approving tasks","level":"1.13.3.2","depth":3,"anchor":"#approving-tasks","path":"workflow.md","ref":"workflow.md#approving-tasks","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"recipe-development-lifecycle.md","mtime":"2019-04-24T19:40:57.138Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-04-24T19:42:23.835Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Recipe lifecycle management","date":"2017-05-31T15:00:00.000Z","level":"1.14","depth":1,"next":{"title":"Export","level":"1.14.1","depth":2,"path":"recipe-development-lifecycle/export.md","ref":"recipe-development-lifecycle/export.md","articles":[]},"previous":{"title":"Approving tasks","level":"1.13.3.2","depth":3,"anchor":"#approving-tasks","path":"workflow.md","ref":"workflow.md#approving-tasks","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"recipe-development-lifecycle.md","mtime":"2019-04-26T04:43:15.219Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-04-26T04:44:39.290Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
