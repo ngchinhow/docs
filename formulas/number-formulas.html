@@ -9738,6 +9738,102 @@
 </tbody>
 </table>
 <hr>
+<h2 id="even">even?</h2>
+<p>This function checks the input and returns true if it is an even number.</p>
+<h3 id="example">Example</h3>
+<table>
+<thead>
+<tr>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>2.even?</code></td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>3.even?</code></td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="isnottrue">is_not_true?</h2>
+<p>Converts a value to boolean and returns true if value is truthy.</p>
+<h3 id="example">Example</h3>
+<table>
+<thead>
+<tr>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&quot;false&quot;.is_not_true?</code></td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>0.is_not_true?</code></td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>nil.is_not_true?</code></td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="istrue">is_true?</h2>
+<p>Converts a value to boolean and returns true if value is truthy.</p>
+<h3 id="example">Example</h3>
+<table>
+<thead>
+<tr>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&quot;false&quot;.is_true?</code></td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>1.is_true?</code></td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>nil.is_true?</code></td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="odd">odd?</h2>
+<p>This function checks the input and returns true if it is an odd number.</p>
+<h3 id="example">Example</h3>
+<table>
+<thead>
+<tr>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>3.odd?</code></td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>2.odd?</code></td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<hr>
 <h2 id="presence">presence</h2>
 <p>This function will check the input number, returning its value if there is one present, else returning nil.</p>
 <h3 id="example">Example</h3>
@@ -10092,7 +10188,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Number formulas","date":"2017-03-30T05:00:00.000Z","level":"1.8.3","depth":2,"next":{"title":"Date formulas","level":"1.8.4","depth":2,"path":"formulas/date-formulas.md","ref":"formulas/date-formulas.md","articles":[]},"previous":{"title":"String formulas","level":"1.8.2","depth":2,"path":"formulas/string-formulas.md","ref":"formulas/string-formulas.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"formulas/number-formulas.md","mtime":"2019-04-29T20:18:20.194Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-04-29T20:19:53.899Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Number formulas","date":"2017-03-30T05:00:00.000Z","level":"1.8.3","depth":2,"next":{"title":"Date formulas","level":"1.8.4","depth":2,"path":"formulas/date-formulas.md","ref":"formulas/date-formulas.md","articles":[]},"previous":{"title":"String formulas","level":"1.8.2","depth":2,"path":"formulas/string-formulas.md","ref":"formulas/string-formulas.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"formulas/number-formulas.md","mtime":"2019-05-02T16:13:10.077Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-05-02T16:16:12.855Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
