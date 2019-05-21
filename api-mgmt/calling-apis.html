@@ -3047,7 +3047,7 @@
         <a href="../api-management.html">
       
         
-        API management
+        API Platform
       
         </a>
       
@@ -9560,27 +9560,54 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>APIs that are exposed through the API Platform console can be called from recipes in accounts other than one owning the recipe, as well as from third-party tools, programs, and scripts. The API manager must provide to the client the Auth Token value needed to call an API Collection.</p>
+                                <h1 id="calling-apis">Calling APIs</h1>
+<p>APIs that are exposed through the API Platform console can be called from recipes in accounts other than one owning the recipe, as well as from third-party tools, programs, and scripts. The API manager must provide the Auth Token or JWT token value to the client in order to call any endpoints in an API Collection.</p>
 <h1 id="authorization-headers">Authorization Headers</h1>
-<p>If the Access Profile specifies the &quot;Auth Token&quot; method of authentication, then the Auth Token value must be passed by the client as the value of the &quot;API-Token&quot; header. If the authorization method is &quot;JSON Web Token,&quot; then the value of the encoded and signed token is passed in the &quot;Authorization&quot; header, using the &quot;Bearer&quot; scheme.</p>
+<p>If the Access Profile specifies the <strong>Auth Token</strong> method of authentication, then the Auth Token value must be passed by the client as the value of the <code>API-Token</code> header. If the authorization method is <strong>JSON Web Token</strong>, then the value of the encoded and signed token is passed in the <code>Authorization</code> header, using the <code>Bearer</code> scheme.</p>
 <h1 id="calling-an-api-endpoint-from-a-recipe">Calling an API Endpoint from a Recipe</h1>
-<p>An API Endpoint can be called from a recipe using the HTTP Connector. Select the &quot;Send request&quot; action of the Connector. The following screen shows a typical configuration for this action (in this case a POST request):</p>
+<p>An API Endpoint that belongs to another user can be called from a recipe using the HTTP Connector. Select the <strong>Send request</strong> action of the Connector. The following screen shows a typical configuration for this action (in this case a POST request):</p>
 <p><img src="../assets/images/api-mgmt/api-client-request.png" alt="API Client Request">
 <em>API Client Request</em></p>
 <p>Make sure that the type of request (POST, PUT, GET) matches the API that you are calling. Any required fields need to be specified in the body (for POST and PUT) or as query parameters in the URL (for GET).</p>
-<p>Also note that an &quot;API-Token&quot; request header has been added. Its value should be set to the token that the API owner has supplied to you. (This assumes the &quot;Auth Token&quot; method of authentication)</p>
-<p>Caution: the API token should not be shared with other users. Therefore it is recommended not to make a recipe public that contains such as token.</p>
-<p>Also configure if necessary the expected Response schema from the API call.</p>
+<p>Also, note that an <code>API-Token</code> request header has been added. Its value should be set to the token that the API owner has supplied to you. (This assumes the <strong>Auth Token</strong> method of authentication)</p>
+<blockquote>
+<p><strong>Caution</strong>
+The API token should not be shared with other users. Therefore it is not recommended to make a recipe public that contains such a token.</p>
+</blockquote>
 <h1 id="testing-a-call-to-an-api">Testing a Call to an API</h1>
-<p>Using the recipe test feature, you can run the recipe a single time and have it generate a call to the REST API. If successful, the API will return a 200 status and the recipe execution will continue to completion. There are several possible errors that can occur. Some of the common ones are:</p>
-<p>1) A 500 error code (&quot;Internal error&quot;). This usually indicates that the request parameters were missing or invalid for the API.</p>
-<p>2) A 401 error code (&quot;Unauthorized&quot;). This indicates a problem with the API token. It is missing, or does not match the correct code for the API you are trying to call.</p>
-<p>3) A 404 error (&quot;Not found&quot;) may indicate that you have the incorrect URL in the Request configuration on your side. Another possible cause is that the recipe you are calling is not running. Yet another possibility is that the recipe owner has either the API Collection or your your client configuration set to &quot;Disabled.&quot;</p>
+<p>Using the recipe test feature, you can run the recipe a single time and have it generate a call to the REST API. If successful, the API will return a 200 status and the recipe execution will continue to completion. There are several possible errors that can occur. Here are some of the common ones.</p>
+<table>
+<thead>
+<tr>
+<th>Error code</th>
+<th>Description</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>500</td>
+<td>Internal error</td>
+<td>This usually indicates that the request parameters were missing or invalid for the API.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>This indicates a problem with the API token. It is missing or does not match the correct code for the API you are trying to call.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not found</td>
+<td>This may indicate that you have the incorrect URL in the request configuration on your side. Another possible cause is that the recipe you are calling is not running. Yet another possibility is that the recipe owner has either the API Collection or your client configuration set to <strong>Disabled</strong>.</td>
+</tr>
+</tbody>
+</table>
 <h1 id="calling-the-api-from-other-clients">Calling the API from other clients</h1>
-<p>Clients can access the Open API description for the service by performing a GET request on the API url and adding &quot;swagger&quot; to the path. This URL should also have the API token as a query parameter. So for example if the API URL is &quot;<a href="https://workato.com/doc/service/sales-api-v1" target="_blank">https://workato.com/doc/service/sales-api-v1</a>,&quot; the Open API description is avaiable at a URL like:</p>
-<p><code>https://workato.com/doc/service/sales-api-v1/swagger?token=e6883d64843aaed62d48bcdf3cf4ebbf</code></p>
+<p>Clients can access the Open API description for the service by performing a GET request on the API URL and adding <code>/swagger</code> to the path. This URL should also have the API token as a query parameter. So for example, if the API URL is <code>https://workato.com/doc/service/sales-api-v1</code>, the Open API description is available at a URL like:</p>
+<pre><code class="lang-bash">https://workato.com/doc/service/sales-api-v1/swagger?token=e6883d64843aaed62d48bcdf3cf4ebbf
+</code></pre>
 <p>The Open API description can be used by tools such as the <a href="https://swagger.io/tools/swagger-ui/" target="_blank">Swagger UI</a> to make requests. For programmers, it is possible to generate API client code using <a href="https://github.com/swagger-api/swagger-codegen" target="_blank">Swagger Codegen</a>.</p>
-<p>Any other standard HTTP request tool, such as the command-line tool &quot;curl,&quot; can also be used to make requests.</p>
+<p>Any other standard HTTP request tool, such as the command-line tool <a href="https://curl.haxx.se/" target="_blank">cURL</a> or the popular open source tool <a href="https://www.getpostman.com/" target="_blank">Postman</a>, can be used to make requests.</p>
 
                                 
                                 </section>
@@ -9663,7 +9690,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Calling APIs","date":"2018-04-08T13:25:00.000Z","level":"1.19.4","depth":2,"next":{"title":"Security Best Practices for APIs","level":"1.19.5","depth":2,"path":"api-mgmt/api-security.md","ref":"api-mgmt/api-security.md","articles":[]},"previous":{"title":"Access Tokens","level":"1.19.3.1","depth":3,"path":"api-mgmt/access-tokens.md","ref":"api-mgmt/access-tokens.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"api-mgmt/calling-apis.md","mtime":"2019-05-21T04:41:54.810Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-05-21T04:43:14.799Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Calling APIs","date":"2018-04-08T13:25:00.000Z","level":"1.19.4","depth":2,"next":{"title":"Security Best Practices for APIs","level":"1.19.5","depth":2,"path":"api-mgmt/api-security.md","ref":"api-mgmt/api-security.md","articles":[]},"previous":{"title":"Access Tokens","level":"1.19.3.1","depth":3,"path":"api-mgmt/access-tokens.md","ref":"api-mgmt/access-tokens.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"api-mgmt/calling-apis.md","mtime":"2019-05-21T18:07:48.463Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-05-21T18:09:38.265Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

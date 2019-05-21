@@ -3047,7 +3047,7 @@
         <a href="../api-management.html">
       
         
-        API management
+        API Platform
       
         </a>
       
@@ -9564,39 +9564,34 @@
 <p>Callable recipes are a type of recipe that can be called from another recipe. It&apos;s a way to decompose your recipes into smaller recipes, to help simplify as well as enable reuse (i.e. callable recipe can be called from multiple recipes)</p>
 <p>Unlike other recipes that are started by a trigger event, callable recipe steps are executed when the recipe is called from another recipe.</p>
 <p>Callable recipes can also be accessed via REST API.</p>
-<p>Advantages of using callable recipes</p>
-<ul>
-<li><p>Easier to test
-By using a single block/loop in a separate recipe instead of repeating the single block/loop multiple times within a recipe, you just have to change the code in one place and test it instead of multiple places in the recipe.</p>
-</li>
-<li><p>Making recipes more readable
-Instead of having really long recipes, break it out into smaller recipes that can be called</p>
-</li>
-<li><p>Sharing across recipes
-If you have a standard error notification policy, you can create a recipe and then have all recipes call this recipe for error notification</p>
-</li>
-<li><p>Sharing across accounts and with business partners
-You can expose REST APIs to your business partners. e.g. a REST API that provides inventory status to your suppliers.</p>
-</li>
-</ul>
+<h2 id="advantages-of-using-callable-recipes">Advantages of using callable recipes</h2>
+<h3 id="easier-to-test">Easier to test</h3>
+<p>By using a single block/loop in a separate recipe instead of repeating the single block/loop multiple times within a recipe, you just have to change the code in one place and test it instead of multiple places in the recipe.</p>
+<h3 id="making-recipes-more-readable">Making recipes more readable</h3>
+<p>Instead of having really long recipes, break it out into smaller recipes that can be called.</p>
+<h3 id="sharing-across-recipes">Sharing across recipes</h3>
+<p>If you have a standard error notification policy, you can create a recipe and then have all recipes call this recipe for error notification.</p>
+<h3 id="sharing-across-accounts-and-with-business-partners">Sharing across accounts and with business partners</h3>
+<p>You can expose REST APIs to your business partners. e.g. a REST API that provides inventory status to your suppliers.</p>
 <h2 id="using-callable-recipes">Using callable recipes</h2>
 <p>Let&#x2019;s take a look at an example to see how this works. Say you want to automate the process of creating an invoice in Quickbooks Online (QBO) when an opportunity is closed-won in Salesforce. The recipe logic would be
-Create a new customer if customer does not exist</p>
+Create a new customer if the customer does not exist</p>
 <p>In order to create a QBO invoice, you&#x2019;ll need to create a new customer if the customer does not already exist in QBO. Now, this snippet of logic: &#x201C;creating a customer in QBO when they don&#x2019;t already exist,&#x201D; is a process that is necessary not only with your Salesforce to QBO integrations, but also when you have Point Of Sale (POS) transactions flowing into QBO, invoices you receive from your vendors and more. Instead of recreating the logic for &#x201C;creating a customer in QBO when they don&#x2019;t already exist,&#x201D; you can make this snippet of logic into a Callable Recipe.</p>
-<p><strong>Step 1. Create a new recipe</strong></p>
+<h3 id="create-a-new-recipe">Create a new recipe</h3>
 <p>Create a recipe as you normally would, and for the trigger, select <strong>Callable Recipe</strong> under the application picklist.</p>
-<p><img src="../assets/images/features/Callable Recipes/Callable Recipe Trigger 0.png" alt="CallableRecipeTrigger0">
+<p><img src="../assets/images/features/callable-recipes/callable-recipe-trigger.png" alt="Select callable recipe trigger">
 <em>Select callable recipe connector and call recipe action</em></p>
-<p>Fill in a Name for the recipe, and fill up the Input Schema and the Response Schema in the JSON Format. You can find out more about JSON <a href="https://support.workato.com/support/solutions/articles/1000234879-schema-definition" target="_blank">here</a>.
-<img src="../assets/images/features/Callable Recipes/Callable Recipe Trigger 1.png" alt="CallableRecipeTrigger1">
-In <strong>simple terms</strong>, the input schema determines what fields will be shown and n
-eed to be filled in when a callable recipe action is created in the calling recipe. The Response schema determines what pills will be available for use in the calling recipes Output data.</p>
-<p>Next, create your set of actions for the recipe. For this example you would create a set of standard de-duplication steps, run a search, and if the search gives no results, create a customer. If an existing customer is found, update customer.</p>
-<p><strong>Step 2: Call recipe</strong></p>
+<p>Fill in a Name for the recipe, and fill up the Input Schema and the Response Schema in the JSON Format. You can find out more about JSON <a href="https://support.workato.com/support/solutions/articles/1000234879-schema-definition" target="_blank">here</a>.</p>
+<p><img src="../assets/images/features/callable-recipes/callable-recipe-trigger-inputs.png" alt="Callable recipe trigger input">
+<em>Configure callable recipe trigger</em></p>
+<p>In simple terms, the input schema determines what fields will be shown and need to be filled in when a callable recipe action is created in the calling recipe. The Response schema determines what pills will be available for use in the calling recipes Output data.</p>
+<p>Next, create your set of actions for the recipe. For this example, you would create a set of standard de-duplication steps, run a search, and if the search gives no results, create a customer. If an existing customer is found, update the customer.</p>
+<h3 id="call-recipe">Call recipe</h3>
 <p>Create a recipe that requires the logic from the callable recipe we created earlier. Set up the trigger as required, and when created the actions you need. When you need to call the callable recipe, simply click on Add a new step, select <strong>call recipe</strong>, choose the recipe you created earlier, and you will see the fields from your <strong>input schema</strong> appear. Simply drag and drop the required pills and you&apos;ll be good to go!</p>
-<p><img src="../assets/images/features/Callable Recipes/Call Recipe Action.png" alt="CallableRecipeTrigger0"></p>
+<p><img src="../assets/images/features/callable-recipes/callable-recipe-action.png" alt="Callable recipe action">
+<em>Call a recipe as an action</em></p>
 <h2 id="calling-recipes-using-a-rest-api">Calling Recipes using a REST API</h2>
-<p>The <a href="../api-management.html">API Management</a> features in Workato allow the owner of a callable recipe to permit calling that recipe from other accounts using a REST interface. See <a href="../api-mgmt/calling-apis.html">Calling APIs</a> for how to make such calls as a client.</p>
+<p>The <a href="../api-management.html">API Platform</a> features in Workato allow the owner of a callable recipe to permit calling that recipe from other accounts using a REST interface. See <a href="../api-mgmt/calling-apis.html">Calling APIs</a> for how to make such calls as a client.</p>
 
                                 
                                 </section>
@@ -9679,7 +9674,7 @@ eed to be filled in when a callable recipe action is created in the calling reci
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Callable recipes","date":"2017-04-05T14:00:00.000Z","level":"1.16.5","depth":2,"next":{"title":"Account properties","level":"1.16.6","depth":2,"path":"features/account-properties.md","ref":"features/account-properties.md","articles":[]},"previous":{"title":"Using templates in recipes","level":"1.16.4.5","depth":3,"anchor":"#using-templates-in-recipes","path":"features/message-template.md","ref":"features/message-template.md#using-templates-in-recipes","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"features/callable-recipes.md","mtime":"2019-05-21T04:41:56.325Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-05-21T04:43:14.799Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Callable recipes","date":"2017-04-05T14:00:00.000Z","level":"1.16.5","depth":2,"next":{"title":"Account properties","level":"1.16.6","depth":2,"path":"features/account-properties.md","ref":"features/account-properties.md","articles":[]},"previous":{"title":"Using templates in recipes","level":"1.16.4.5","depth":3,"anchor":"#using-templates-in-recipes","path":"features/message-template.md","ref":"features/message-template.md#using-templates-in-recipes","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"features/callable-recipes.md","mtime":"2019-05-21T18:07:50.351Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-05-21T18:09:38.265Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
