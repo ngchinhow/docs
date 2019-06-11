@@ -3222,6 +3222,21 @@
       
     </li>
   
+    <li class="chapter " data-level="1.17.4.4" data-path="workbot-triggers.html">
+      
+
+      
+        <a href="workbot-triggers.html#new-dynamic-menu-event">
+      
+        
+        New dynamic menu event
+      
+        </a>
+      
+
+      
+    </li>
+  
 
         </ul>
       
@@ -3283,6 +3298,21 @@
       
         
         Post notifications
+      
+        </a>
+      
+
+      
+    </li>
+  
+    <li class="chapter " data-level="1.17.5.4" data-path="workbot-actions.html">
+      
+
+      
+        <a href="workbot-actions.html#return-menu-options/">
+      
+        
+        Return menu options
       
         </a>
       
@@ -9758,12 +9788,13 @@
                                 
                                 <h1 id="workato-actions-for-slack">Workato actions for Slack</h1>
 <p>Workbot actions allow Workbot to post notifications into a specified channel when there are events to take note of, or respond to a command.</p>
-<p>Workbot supports 3 actions:</p>
+<p>Workbot supports 5 actions:</p>
 <ul>
 <li><a href="#post-command-reply">Post command reply</a></li>
 <li><a href="#post-notifications">Post notifications</a></li>
 <li><a href="#post-messages">Post messages</a></li>
 <li><a href="#download-attachment">Download attachment</a></li>
+<li><a href="#return-menu-options">Return menu options</a></li>
 </ul>
 <h2 id="post-command-reply">Post command reply</h2>
 <p>Post command reply allows you to customize how Workbot replies when an event is completed. This reply can be a simple message about the task completion, or a prompt for the user to take a subsequent action once the first has been done, e.g. after retrieving data for a custom account in Salesforce, ask if the user wishes to copy that information across to another application.</p>
@@ -9929,6 +9960,32 @@ Related commands are deprecated-->
 <p>The fields available are simillar to that of the <strong>Post command reply</strong> action, with all the typical fields you see in a Slack message. However, there is the addition of the field <strong>Notification filter</strong>. This field allows you to set parameters for filters, which acts like a trigger filter for sending out notifications (i.e. the notification will only get sent when the set criteria is met).</p>
 <h2 id="download-attachment">Download attachment</h2>
 <p>This action allows you to download attachments from Slack, received as input to <a href="workbot-triggers.html#new-commands-building-custom-commands"><strong>New command</strong> trigger</a>. Make sure command parameter for uploaded content has type <em>file</em>, e.g. <code>attachment type:file</code>. Pass file URL from <strong>New command</strong> output into the <strong>URL</strong> field to get attachment content. Then you may further pass this file content to Dropbox, Box or other connectors to upload them as files.</p>
+<h2 id="return-menu-options">Return menu options</h2>
+<p>This action allows you to dynamically generate menu options, then return them to a dynamic menu in a Slack dialog.</p>
+<p>For Workbot command recipes that invoke dialogs, a <code>select</code> field can be defined with dynamic menu options.</p>
+<p><img src="../assets/images/workbot/workbot-trigger/dynamic-menu.png" alt="Dynamic menu">
+<em>A Workbot command recipe with dynamic menu options</em></p>
+<p>After retrieving a list of records from another app (e.g. Salesforce), you can return them back to the dynamic menu by using the <strong>Return menu options</strong> action.</p>
+<p><img src="../assets/images/workbot/workbot-actions/return-menu-options-recipe.png" alt="Return menu options recipe">
+<em>Retrieving Salesforce opportunities before returning them as menu options back to the Slack dialog with the dynamic menu</em></p>
+<p>Hence, this action should always be paired with a <a href="workbot-triggers.html#new-dynamic-menu-event/">New dynamic menu event</a> trigger.</p>
+<h3 id="input">Input</h3>
+<p>By default, you can specify a static list of menu options by adding menu options 1-by-1.</p>
+<p><img src="../assets/images/workbot/workbot-actions/add-static-menu-option.gif" alt="Add static menu option">
+<em>Adding static menu options 1-by-1</em></p>
+<p>However, you can create a dynamic list by changing the input mode to dynamic. Simply pass a list datapill from the ouput of a previous action step.</p>
+<p><img src="../assets/images/workbot/workbot-actions/switching-from-static-to-dynamic.gif" alt="Static to dynamic menu options">
+<em>Configuring dynamic menu options</em></p>
+<p>Returned menu options are in an ungrouped list by default.</p>
+<p><img src="../assets/images/workbot/workbot-actions/ungrouped-options-recipe.png" alt="Ungrouped options in the recipe">
+<em>Ungrouped options in recipe</em></p>
+<p><img src="../assets/images/workbot/workbot-actions/ungrouped-options-slack.png" alt="Ungrouped options">
+<em>Ungrouped options in Slack</em></p>
+<p>When returning menu options, you can group menu options together by setting <strong>Group menu options?</strong> to <strong>Yes</strong>. This will require you to specify <strong>Title of group</strong> for each group you add.</p>
+<p><img src="../assets/images/workbot/workbot-actions/grouped-options-recipe.png" alt="Grouped options in the recipe">
+<em>Groups options look in recipe</em></p>
+<p><img src="../assets/images/workbot/workbot-actions/grouped-options.png" alt="Grouped options">
+<em>Grouped options in Slack</em></p>
 
                                 
                                 </section>
@@ -10011,7 +10068,7 @@ Related commands are deprecated-->
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Workbot actions","date":"2017-03-30T05:00:00.000Z","level":"1.17.5","depth":2,"next":{"title":"Post command reply","level":"1.17.5.1","depth":3,"anchor":"#post-command-reply","path":"workbot/workbot-actions.md","ref":"workbot/workbot-actions.md#post-command-reply","articles":[]},"previous":{"title":"New URL mention","level":"1.17.4.3","depth":3,"anchor":"#new-url-mention","path":"workbot/workbot-triggers.md","ref":"workbot/workbot-triggers.md#new-url-mention","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"workbot/workbot-actions.md","mtime":"2019-06-11T03:32:02.360Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-06-11T03:34:38.288Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Workbot actions","date":"2017-03-30T05:00:00.000Z","level":"1.17.5","depth":2,"next":{"title":"Post command reply","level":"1.17.5.1","depth":3,"anchor":"#post-command-reply","path":"workbot/workbot-actions.md","ref":"workbot/workbot-actions.md#post-command-reply","articles":[]},"previous":{"title":"New dynamic menu event","level":"1.17.4.4","depth":3,"anchor":"#new-dynamic-menu-event","path":"workbot/workbot-triggers.md","ref":"workbot/workbot-triggers.md#new-dynamic-menu-event","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"workbot/workbot-actions.md","mtime":"2019-06-11T17:24:54.249Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-06-11T17:26:41.398Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

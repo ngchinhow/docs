@@ -3222,6 +3222,21 @@
       
     </li>
   
+    <li class="chapter " data-level="1.17.4.4" data-path="workbot-triggers.html">
+      
+
+      
+        <a href="workbot-triggers.html#new-dynamic-menu-event">
+      
+        
+        New dynamic menu event
+      
+        </a>
+      
+
+      
+    </li>
+  
 
         </ul>
       
@@ -3283,6 +3298,21 @@
       
         
         Post notifications
+      
+        </a>
+      
+
+      
+    </li>
+  
+    <li class="chapter " data-level="1.17.5.4" data-path="workbot-actions.html">
+      
+
+      
+        <a href="workbot-actions.html#return-menu-options/">
+      
+        
+        Return menu options
       
         </a>
       
@@ -10006,6 +10036,86 @@
 <p><img src="../assets/images/workbot/workbot-trigger/workbot-url.gif" alt="workbot triggers"></p>
 <p>Simply select the application in the trigger (Currently only Salesforce and Github), and select the Document, and set up your actions as you prefer. By default, giving a Salesforce or Github URL in a channel that Workbot is in will trigger a prompt from Workbot asking you if you want to show details of the content of the URL that you have sent. Click on yes to trigger the recipe. You can also edit the recipe in Workato if you want to have more or less fields included in the message.</p>
 <p><img src="../assets/images/workbot/workbot-trigger/workbot-url-mention.gif" alt="workbot triggers"></p>
+<h2 id="new-dynamic-menu-event">New dynamic menu event</h2>
+<p>In Workbot command recipes that invoke dialogs, a <code>select</code> field can be defined with dynamic menu options.</p>
+<p><img src="../assets/images/workbot/workbot-trigger/dynamic-menu.png" alt="Dynamic menu">
+<em>A Workbot command recipe with dynamic menu options</em></p>
+<p>This trigger executes when a user types in such a field, and returns what the user typed (i.e. the <code>typeahead</code> value). At least 5 characters must be typed to trigger an event.</p>
+<p>Use this <code>typeahead</code> value to retrieve a list of records (from another app, e.g. Salesforce) to return to the main recipe (i.e. the recipe that posts the dialog where the <code>select</code> field is).</p>
+<p><img src="../assets/images/workbot/workbot-trigger/typeahead-example.png" alt="Typeahead example"></p>
+<p>You can return the list of records to the dynamic menu by using the <a href="workbot-actions.html#return-menu-options/">Return menu options</a> action. Hence, this trigger should always be paired with a <strong>Return menu options</strong> action.</p>
+<h3 id="input">Input</h3>
+<h4 id="dynamic-menu-nametd">Dynamic menu name&lt;/td&gt;</h4>
+<p>Identifier for this menu.</p>
+<h4 id="command-input-fields">Command input fields</h4>
+<p>A Workbot command recipe with dynamic menu options can pass parameters to a Dynamic menu recipe via the <strong>Dynamic menu recipe params</strong> field. The dynamic menu recipe can use these additional parameters in generating menu options.</p>
+<p><img src="../assets/images/workbot/workbot-trigger/dynamic-menu-recipe-params.png" alt="Dynamic menu recipe params">
+<em>A Workbot command recipe with a dynamic menu options field passing a &apos;stagename&apos; parameter with value &apos;Closed Won&apos;</em></p>
+<p>Correspondingly, the trigger must also have the same parameter defined.</p>
+<p><img src="../assets/images/workbot/workbot-trigger/params-in-dynamic-menu-trigger.png" alt="Params in dynamic menu trigger">
+<em>The corresponding dynamic menu recipe with the same &apos;stagename&apos; parameter defined</em></p>
+<p>The dynamic menu recipe is then able to utilize the additional parameters in generating menu options. In the example below, the parameter <code>stagename</code> is passed to the dynamic menu recipe, allowing the SOQL search to be further refined.</p>
+<p><img src="../assets/images/workbot/workbot-trigger/dynamic-menu-param-example.png" alt="Dynamic menu param example">
+<em>&apos;stagename&apos; parameter is passed to refine the SOQL search</em></p>
+<h3 id="output">Output</h3>
+<table class="unchanged rich-diff-level-one">
+    <thead>
+        <tr>
+            <th colspan="2">Fields</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td rowspan="5">Event context</td>
+          <td>Team</td>
+          <td>Team ID and domain where command was invoked.
+        </td></tr>
+        <tr>
+            <td>User</td>
+            <td>User ID and name of user who invoked command</td>
+        </tr>
+        <tr>
+            <td>Channel</td>
+            <td>
+              Channel ID and name where command was invoked.
+            </td>
+        </tr>
+        <tr>
+            <td>State</td>
+            <td>
+              System message containing dynamic menu recipe ID and parameter name-value pair.
+            </td>
+        </tr>
+        <tr>
+            <td>Action ts</td>
+            <td>
+              Timestamp of when action was invoked.
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="3">Typeahead</td>
+            <td>Name</td>
+            <td>Name of parameter where dynamic menu event was received from.
+        </td></tr>
+          <td>Value</td>
+          <td>Characters typed by user in the dynamic menu options field.
+        </td><tr>
+          <td>Callback ID</td>
+          <td>System message</td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+            <td colspan="2">Parameters</td>
+            <td>
+              Name-value pairs passed by a Workbot command recipe with dynamic menu options.
+            </td>
+        </tr>
+    </tbody>
+</table>
 
                                 
                                 </section>
@@ -10088,7 +10198,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Workbot triggers","date":"2017-03-30T05:00:00.000Z","level":"1.17.4","depth":2,"next":{"title":"New message action","level":"1.17.4.1","depth":3,"path":"workbot/workbot-message-action.md","ref":"workbot/workbot-message-action.md","articles":[]},"previous":{"title":"Using Workbot for Slack","level":"1.17.3","depth":2,"path":"workbot/using-workbot-for-slack.md","ref":"workbot/using-workbot-for-slack.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"workbot/workbot-triggers.md","mtime":"2019-06-11T03:32:02.360Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-06-11T03:34:38.288Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Workbot triggers","date":"2017-03-30T05:00:00.000Z","level":"1.17.4","depth":2,"next":{"title":"New message action","level":"1.17.4.1","depth":3,"path":"workbot/workbot-message-action.md","ref":"workbot/workbot-message-action.md","articles":[]},"previous":{"title":"Using Workbot for Slack","level":"1.17.3","depth":2,"path":"workbot/using-workbot-for-slack.md","ref":"workbot/using-workbot-for-slack.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"workbot/workbot-triggers.md","mtime":"2019-06-11T17:24:54.253Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-06-11T17:26:41.398Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
