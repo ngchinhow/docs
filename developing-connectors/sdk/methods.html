@@ -9827,6 +9827,12 @@
       <td>Iterator returned with an index<br><code>[1, 2, 3].each_with_index { |item, index| puts &quot;#{index}:#{item}&quot; }</code><br> <a href="https://apidock.com/ruby/Enumerator/each_with_index" target="_blank">More details here.</a></td>
     </tr>
     <tr>
+      <td>each_with_object</td>
+      <td>Iterator returned with an object which you can define
+        <code>[%w(foo bar).each_with_object({}) { |str, hsh| hsh[str] = str.upcase }
+# =&gt; {&apos;foo&apos; =&gt; &apos;FOO&apos;, &apos;bar&apos; =&gt; &apos;BAR&apos;}</code><a href="https://apidock.com/rails/Enumerable/each_with_object" target="_blank">More details here.</a></td>
+    </tr>
+    <tr>
       <td>even?</td>
       <td>Returns true if integer is an even number<br> <a href="https://apidock.com/ruby/Integer/even%3F" target="_blank">More details here.</a></td>
     </tr>
@@ -9877,6 +9883,18 @@
         Add payload to a request<br>
         <code>.payload(id: &quot;345&quot;)</code>
       </td>
+    </tr>
+     <tr>
+      <td>pop</td>
+      <td>
+        Removes the last element from self and returns it, or nil if the array is empty.<br>
+        If a number n is given, returns an array of the last n elements (or less) and removes it from array.
+        <code>a = [ &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot; ]
+a.pop     #=&gt; &quot;d&quot;
+a.pop(2)  #=&gt; [&quot;b&quot;, &quot;c&quot;]
+a         #=&gt; [&quot;a&quot;]</code>
+        <a href="https://apidock.com/ruby/Array/pop" target="_blank">More details here.</a></td>
+      
     </tr>
     <tr>
       <td>ignored</td>
@@ -10227,7 +10245,7 @@ end</code></pre>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Methods","level":"1.22.10","depth":2,"next":{"title":"Reusable methods","level":"1.22.11","depth":2,"path":"developing-connectors/sdk/reusable-methods.md","ref":"developing-connectors/sdk/reusable-methods.md","articles":[]},"previous":{"title":"Multipart Form","level":"1.22.9.4","depth":3,"path":"developing-connectors/sdk/data-format/request_format_multipart_form.md","ref":"developing-connectors/sdk/data-format/request_format_multipart_form.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"developing-connectors/sdk/methods.md","mtime":"2019-06-14T03:21:00.511Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-06-14T03:24:08.014Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Methods","level":"1.22.10","depth":2,"next":{"title":"Reusable methods","level":"1.22.11","depth":2,"path":"developing-connectors/sdk/reusable-methods.md","ref":"developing-connectors/sdk/reusable-methods.md","articles":[]},"previous":{"title":"Multipart Form","level":"1.22.9.4","depth":3,"path":"developing-connectors/sdk/data-format/request_format_multipart_form.md","ref":"developing-connectors/sdk/data-format/request_format_multipart_form.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","-sharing","-fontsettings","favicon","toggle-chapters","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"edit-link":{"label":"","base":"https://github.com/workato/docs/edit/master/","multilingual":false},"ga":{"configuration":"auto","token":"UA-104783574-1"},"favicon":{"shortcut":"/assets/images/favicon/favicon.ico","bookmark":"/assets/images/favicon/favicon.ico","appleTouch":"/assets/images/favicon/android-chrome-36x36.png"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Workato Docs","gitbook":"3.2.2"},"file":{"path":"developing-connectors/sdk/methods.md","mtime":"2019-06-17T17:58:25.681Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2019-06-17T18:00:51.352Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
