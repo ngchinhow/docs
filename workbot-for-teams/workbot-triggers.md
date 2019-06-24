@@ -1,6 +1,6 @@
 ---
 title: Workbot for Teams triggers
-date: 2017-03-30 05:00:00 Z
+date: 2019-06-24 05:00:00 Z
 ---
 
 # Workbot command trigger
@@ -70,35 +70,23 @@ Workbot commands can invoke their recipes by:
 *The 'Create issue' button invokes the 'newissue' command and executes the recipe when submitted*
 
 #### Parameters
-Each parameter can store additional data that can be used as datapills in follow-up recipe actions.
+The user or another recipe can provide additional information to a recipe by [passing parameters](/workbot-for-teams/passing-parameters.md) to that recipe. This requires the parameters to be defined in the Workbot trigger, after which the corresponding datapills will be available for use in the follow-up recipe actions. It must be noted that without defining these parameters, their corresponding datapills will not be available for the recipe actions, even if a valid value was passed to it. 
 
-For example, to create an incident in ServiceNow, you may want to prompt users for additional info like **Urgency**, **Summary** and **Description**. By adding **Urgency**, **Summary** and **Description** as parameters, Workbot will open a task module and prompt the user for each parameter.
+[//]: # (The above link is not valid yet. I have just edited the document linked to that link and would need that to go live before this one can.)
 
-![Task module](/assets/images/workbot-for-teams/task-module-snow.png)
-*Workbot can ask users for info if you specify additional parameters in your command*
-
-Users can also skip the prompts by supplying the parameters together with the command.
-
-![Command with in-line parameters](/assets/images/workbot-for-teams/workbot-command-example.png)
-*Sending a 'newissue' command with additional parameters Urgency, Summary and Description*
-
-##### Defining parameters
 ![Parameters configured](/assets/images/workbot-for-teams/parameters-configured.png)
 *3 parameters configured for the 'newissue' command*
 
-When you define parameters, Workbot opens a task module to collect each parameter's value from the user.
-
+##### Defining parameters
 To add a parameter, click on the **+Add parameter** button under the **Parameters** section of a Workbot command trigger.
 
 ![Adding a parameter](/assets/images/workbot-for-teams/adding-a-parameter.png)
 *Adding a new parameter*
 
-
 By configuring the parameter, you can control how the users interact with the parameter in the task module.
 
 ![Parameter form empty](/assets/images/workbot-for-teams/parameter-form-filled.png)
 *Configuring a parameter*
-
 
 The table below describes in further detail what each parameter configuration field does.
 
@@ -129,7 +117,7 @@ The table below describes in further detail what each parameter configuration fi
         <tr>
             <td>Data type</td>
             <td>
-              Data type of the parameter. Currently only supports <code>string</code> and <code>date</code> data types. The data type will influence the input type used to collect this parameter in task modules. For example, if <code>Date</code> is chosen, a date picker will be used to collect the parameter in task modules.
+              Data type of the parameter. Currently supports <code>String</code>, <code>Number</code>, <code>Integer</code>, <code>Date</code>, <code>Time</code> and <code>Boolean</code> data types. The data type will influence the input interface used to collect this parameter in task modules. For example, if <code>Date</code> is chosen, a date picker will be used.
             </td>
         </tr>
         <tr>
@@ -151,40 +139,17 @@ The table below describes in further detail what each parameter configuration fi
             </td>
         </tr>
         <tr>
-            <td>Visible?</td>
-            <td>
-              If <b>Yes</b>, command will not show up in task modules. Useful if the parameter is a record ID that is not human-readable. Defaults to <b>No</b>.
-            </td>
-        </tr>
-        <tr>
             <td>Options</td>
             <td>
-              Comma-separated list of options, e.g. <b>APPROVED, REJECTED, EXPIRED</b>. If the display name and athe value are different, separate the two by a colon, e.g. <b>High:1,Medium:2,Low:3</b>.
+              Comma-separated list of options, e.g. <b>APPROVED, REJECTED, EXPIRED</b>. If the display name and the value are different, separate the two by a colon, e.g. <b>High:1, Medium:2, Low:3</b>. Only visible when data type is <code>String</code>.
             </td>
         </tr>
     </tbody>
 </table>
 
-##### Advanced methods to pass parameter values
-Parameter values can also be passed by buttons and task modules as they invoke a Workbot command. Typically, you use parameters to pass context to the invoked Workbot recipe.
-
-![Button with params example](/assets/images/workbot-for-teams/button-with-params.png)
-*The 'Re-open issue' button not only invokes the 'reopen_issue' command - it's also passing parameters!*
-
-![Button with params recipe](/assets/images/workbot-for-teams/button-with-params-recipe.png)
-*The 'Re-open issue' button is configured to pass the 'sys_id' so that the 'reopen_issue' recipe knows which issue to re-open*
-
-Another way to pass a parameter is by using a pick list **Choice parameter**.
-
-![Choice param recipe](/assets/images/workbot-for-teams/choice-param-recipe.png)
-*The choice parameter will take its value from a choice (if it's chosen)*
-
-The choice parameter is passed when a button from the same message is submitted (along with any other parameters the button may have).
-
-![Choice param](/assets/images/workbot-for-teams/choice-param.png)
-*The 'Next' button also passes the 'opportunity_id' of 'Google' onto the command recipe that it invokes*
-
 # Learn more
 - [Using Workbot for MS Teams](/workbot-for-teams/using-workbot-for-teams.md)
 - [Workbot actions](/workbot-for-teams/workbot-actions.md)
-- [Workbot buttons, pick lists, and task modules](/workbot-for-teams/buttons-choices-task-modules.md)
+- [Passing parameters](/workbot-for-teams/passing-parameters.md)
+
+[//]: # (As with above, this link is not live yet.)
