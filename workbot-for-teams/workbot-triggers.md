@@ -1,6 +1,6 @@
 ---
 title: Workbot for Teams triggers
-date: 2019-06-24 05:00:00 Z
+date: 2019-07-11 05:00:00 Z
 ---
 
 # Workbot command trigger
@@ -70,9 +70,14 @@ Workbot commands can invoke their recipes by:
 *The 'Create issue' button invokes the 'newissue' command and executes the recipe when submitted*
 
 #### Parameters
-The user or another recipe can provide additional information to a recipe by [passing parameters](/workbot-for-teams/passing-parameters.md) to that recipe. This requires the parameters to be defined in the Workbot trigger, after which the corresponding datapills will be available for use in the follow-up recipe actions. It must be noted that without defining these parameters, their corresponding datapills will not be available for the recipe actions, even if a valid value was passed to it. 
+The user (or a preceding recipe) can provide additional information to a recipe by passing parameters to it.
 
-[//]: # (The above link is not valid yet. I have just edited the document linked to that link and would need that to go live before this one can.)
+This requires defining the parameters (link to defining parameters) in the Workbot trigger, ensuring that the parameter's name is the same in both upstream and downstream recipes.
+
+This step is critical - it makes sure that:
+
+1. The correct parameter value to passed to the correct parameter through the recipes.
+2. Parameter datapills become available in the downstream recipe's datatree for use in subsequent recipe actions.
 
 ![Parameters configured](/assets/images/workbot-for-teams/parameters-configured.png)
 *3 parameters configured for the 'newissue' command*
@@ -151,5 +156,3 @@ The table below describes in further detail what each parameter configuration fi
 - [Using Workbot for MS Teams](/workbot-for-teams/using-workbot-for-teams.md)
 - [Workbot actions](/workbot-for-teams/workbot-actions.md)
 - [Passing parameters](/workbot-for-teams/passing-parameters.md)
-
-[//]: # (As with above, this link is not live yet.)
