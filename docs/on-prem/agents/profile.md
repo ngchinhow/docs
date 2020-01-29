@@ -498,7 +498,7 @@ ldap:
     password: foobar
     base: dc=acme,dc=com
     ssl:
-      cert: /path/to/PEM-encoded-certificate-or-trusted-CA
+      cert: /path/to/PEM-encoded-certificate-or-trusted-CA-certificate
       trustAll: true
 ```
 
@@ -555,7 +555,7 @@ ldap:
         <i>optional</i>
       </td>
       <td>cert</td>
-      <td>Path the PEM encoded certificate or a trusted CA.</td>
+      <td>Path the PEM encoded certificate or a trusted CA certificate.</td>
     </tr>
     <tr>
       <td>pem</td>
